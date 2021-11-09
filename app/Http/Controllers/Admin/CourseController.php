@@ -40,7 +40,7 @@ class CourseController extends Controller
             'message' => 'El curso se publico con exito',
             'alert-type' => 'success'
         );
-
+ 
         $course->status=3;
         $course->save();
 
@@ -77,4 +77,11 @@ class CourseController extends Controller
 
         return redirect()->route('admin.courses.index')->with($notification);
     }
+
+    public function terminate()
+    {
+        
+    }
+
+
 }

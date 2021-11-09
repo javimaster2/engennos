@@ -7,8 +7,8 @@
             <div class="card-body bg-gray-100">
                 @if ($requirement->id==$item->id)
                     <form wire:submit.prevent="update">
-                        <input wire:model="goal.name" class="focus:ring-2 focus:ring-gray-200 focus:border-transparent w-full border border-gray-300 rounded" >
-                        @error('requeriment.name')
+                        <input wire:model="requirement.name" class="focus:ring-2 focus:ring-gray-200 focus:border-transparent w-full border border-gray-300 rounded" >
+                        @error('requirement.name')
                             <span class="texte-xs text-red-500">{{ $message }}</span>
                         @enderror
                     </form>
@@ -29,12 +29,12 @@
     <article class="card">
         <div class="card-body">
             <form wire:submit.prevent="store">
-                <input wire:model="name" class="focus:ring-2 focus:ring-gray-200 focus:border-transparent w-full border border-gray-300 rounded" placeholder="Ingrese el nombre de la meta">
+                <input wire:model="name" class="focus:ring-2 focus:ring-gray-200 focus:border-transparent w-full border border-gray-300 rounded" placeholder="Ingrese el nombre del requerimiento">
                 @error('name')
                     <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
                 <div class=" flex justify-end mt-2">
-                    <button type="submit" class="btn btn-success" >Agregar Meta</button>
+                    <button type="submit" class="btn btn-success" >Agregar Requerimiento</button>
                 </div>
             </form>
         </div>

@@ -13,7 +13,16 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
+        {{-- asdsd --}}
 
+        <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        
         @livewireStyles
 
         <!-- Scripts -->
@@ -41,11 +50,15 @@
                             <a href="{{route('instructor.courses.curriculum',$course)}}">Lecciones del curso</a>
                         </li>
                         <li class="leading-7 mb-2 border-l-4 @routeIs('instructor.courses.goals',$course) border-white text-lg font-bold @else border-transparent @endif pl-2">
-                            <a href="{{route('instructor.courses.goals',$course)}}">Metas del curso</a>
+                            <a href="{{route('instructor.courses.goals',$course)}}">Objetivos del curso</a>
                         </li>
                         <li class="leading-7 mb-2 border-l-4 @routeIs('instructor.courses.students',$course) border-white text-lg font-bold @else border-transparent @endif pl-2 ">
                             <a href="{{route('instructor.courses.students',$course)}}">Estudiantes</a>
                         </li> 
+                        <li class="leading-7 mb-2 border-l-4 @routeIs('instructor.courses.complete',$course) border-white text-lg font-bold @else border-transparent @endif pl-2 ">
+                            <a href="{{route('instructor.courses.complete',$course)}}">Recurso del curso</a>
+                        </li> 
+                        
 
                         @if ($course->observation)
                             <li class="leading-7 mb-2 border-l-4 @routeIs('instructor.courses.students',$course) border-white text-lg font-bold @else border-transparent @endif pl-2 ">
@@ -104,6 +117,30 @@
         @isset($js)
             {{$js}}
         @endisset
+
+        
+        <script>
+            
+            window.addEventListener('alert', event => { 
+            toastr[event.detail.type](event.detail.message, 
+            event.detail.title ?? ''), toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                    }
+                });
+
+
+            
+
+window.addEventListener('alert', event => { 
+     toastr[event.detail.type](event.detail.message, 
+     event.detail.title ?? ''), toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+        }
+    });
+
+</script>
         
     </body>
 </html>

@@ -5,11 +5,12 @@ namespace App\Http\Livewire\Instructor;
 use App\Models\Lesson;
 use App\Models\Platform;
 use App\Models\Section;
+use App\Observers\LessonObserver;
 use Livewire\Component;
 
 class CoursesLesson extends Component
 {
-    public $section,$lesson,$platforms,$name,$platform_id=1,$url;
+    public $section,$lesson,$platforms,$name,$platform_id=2,$url,$iframe;
 
     protected $rules=[
         'lesson.name'=>'required',
@@ -22,6 +23,7 @@ class CoursesLesson extends Component
         $this->section=$section;
         $this->platforms=Platform::all();
         $this->lesson=new Lesson();
+        
     }
     public function render()
     {
@@ -44,7 +46,8 @@ class CoursesLesson extends Component
 
         if($this->platform_id==2)
         {
-            $rules['url']=['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'];
+            //$rules['url']=['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'];
+            $rules['url']=['required', 'regex:/https?:\/\/(www\.)?onedrive\.live\.com\/download[?+=&%a-zA-Z0-9]+/'];
         }
 
         $this->validate($rules);

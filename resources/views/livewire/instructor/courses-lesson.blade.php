@@ -94,6 +94,7 @@
                         @error('url')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
+                        {{ $iframe }}
                 </div>
                 <div class="flex justify-end">
                     <button class="btn btn-danger" x-on:click="open=false">Cancelar</button>

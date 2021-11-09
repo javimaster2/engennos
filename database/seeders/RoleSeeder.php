@@ -15,7 +15,7 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $role=Role::create(['name'=>'Admin']);
-        $role->permissions()->attach([1,2,3,4,5,6,7,8,9,10,11]);
+        $role->permissions()->attach([1,2,3,4,5,6,7,8,9,10,11,12,13]);
         $role=Role::create(['name'=>'Instructor']);
         $role->syncPermissions(['Crear Cursos','Leer Cursos','Actualizar Cursos','Eliminar Cursos']);
     }

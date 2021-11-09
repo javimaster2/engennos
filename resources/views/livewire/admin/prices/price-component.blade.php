@@ -8,7 +8,7 @@
         <div class="card-body">
             
             <x-jet-danger-button class="btn btn-primary btn-sm float-right" wire:click="$set('openmodal',true)">
-                Crear Categoria
+                Crear Precio
             </x-jet-danger-button>
 
             <table class="table table-striped">

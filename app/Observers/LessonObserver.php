@@ -18,9 +18,10 @@ class LessonObserver
             $array = preg_match($patron, $url, $parte);
             $lesson->iframe = '<iframe src="https://player.vimeo.com/video/' . $parte[2] . '" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>';       
         }else{
-            $patron = '%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x';
+            $patron = '/https?:\/\/(www\.)?onedrive\.live\.com\/download[?+=&%a-zA-Z0-9]+/';
             $array = preg_match($patron, $url, $parte);
-            $lesson->iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'. $parte[1] .'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            $iframe=$parte;
+            $lesson->iframe = '<source width="560" height="315" src="'. $parte[0] .'" type="video/mp4" ></source>';
         }
     }
 

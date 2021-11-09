@@ -1,4 +1,5 @@
 <div class="card " x-data="{open:false}">
+    
     <div class="card-body bg-gray-100 border">
         <header class="flex  items-center cursor-pointer" x-on:click="open=!open">
             <h1 class="text-md text-gray-500 ">Recursos de la leccion</h1>
@@ -22,10 +23,12 @@
                 <form wire:submit.prevent="save">
                     <div class="flex items-center">
                         <label
-                            class="w-full flex flex-col items-center bg-white rounded-md shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-bluee hover:text-white text-purple-600 ease-linear transition-all duration-150">
+                            class="w-full flex flex-col items-center  bg-white rounded-md shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-bluee hover:text-white text-purple-600 ease-linear transition-all duration-150">
                                 <i class="fas fa-cloud-upload-alt fa-3x"></i>
                                 <span class="mt-2 text-base leading-normal">Seleccionar archivo</span>
                                 <input type='file' class="hidden"  wire:model="file"/>
+                                
+                                
                             </label>
                         <button type="submit" class="btn btn-primary text-sm ml-2">Guardar</button>
                     </div>

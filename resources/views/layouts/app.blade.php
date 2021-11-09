@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        
 
         <title>{{ config('app.name', 'Eduvirtual') }}</title>
 
@@ -14,6 +15,7 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
         <link rel="shortcut icon" href="{{{ asset('LOGOHC-LEARNING.png') }}}">
+        
         
         @livewireStyles
 
@@ -26,6 +28,7 @@
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        
         
 
 
@@ -58,17 +61,6 @@
         </style>
 
         <script>
-    
-
-            window.addEventListener('alert', event => { 
-            toastr[event.detail.type](event.detail.message, 
-            event.detail.title ?? ''), toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                    }
-                });
-
-
                 $(document).ready(function () {
                     $('.openModal').on('click', function(e){
                         $('#interestModal').removeClass('invisible');
@@ -189,7 +181,7 @@
                     </div>
                 </div>
 
-                <div class="py-4 flex flex-col justify-center items-center">
+                <div class="py-4 flex flex-col justify-center items-center  ">
                     <a class="focus:outline-none" tabindex="0" role="link" aria-label="home link" href="{{route('home')}}">
 
                         <img class="h-20 w-20" src="{{asset('LOGOHC-LEARNING.png')}}">
@@ -203,7 +195,7 @@
         
         
         <script>
-            @if(Session::has('message'))
+            /* @if(Session::has('message'))
                 var type="{{Session::get('alert-type','info')}}"
 
             
@@ -221,9 +213,17 @@
                         toastr.error("{{ Session::get('message')}}");
                         break;
                 }
-            @endif
+            @endif */
+            window.addEventListener('alert', event => { 
+            toastr[event.detail.type](event.detail.message, 
+            event.detail.title ?? ''), toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                    }
+                });
 
-            
+
+                
 
         </script>
        

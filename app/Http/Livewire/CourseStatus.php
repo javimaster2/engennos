@@ -4,8 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Models\Course;
 use App\Models\Lesson;
+use GuzzleHttp\Psr7\Request;
 use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 
 class CourseStatus extends Component
 {
@@ -13,6 +15,8 @@ class CourseStatus extends Component
 
     public $course;
     public $current;
+    public $avance,$stat;
+    protected $listeners = ['completed' => 'completed','changeLesson','refresh'=>'$refresh'];
 
     //recibe lo que estemos pasando por la url
     public function mount(Course $course)
@@ -35,11 +39,14 @@ class CourseStatus extends Component
         }
 
         $this->authorize('enrolled',$course);//protege la ruta si el usuario esta autentificado de lo cont.. error
+        
 
     }
 
     public function render()
-    {
+    { 
+        
+        
         return view('livewire.course-status');
     }
 
@@ -47,7 +54,9 @@ class CourseStatus extends Component
    //este metodo hara que reemplace el valor de la propiedad current
    public function changeLesson(Lesson $lesson)
    {
-       $this->current=$lesson;   
+       $this->current=$lesson;
+
+       
    }
 
    public function completed()
@@ -78,6 +87,7 @@ class CourseStatus extends Component
        // $this->index=$course->lessons->search($lesson);//este metodo search va a buscar dentro de la coleccion el registro que coicidan dentro de los parentesis y nos devuelme su indice
        //el metodo pluck me crea una coleccion a partir de una existente, solo que esta coleccion incluira el id de cadad uno de los registro
        return $this->course->lessons->pluck('id')->search($this->current->id);
+      
 
    }
    public function getPreviousProperty()
@@ -96,10 +106,13 @@ class CourseStatus extends Component
        if($this->index==$this->course->lessons->count()-1)//si index es igual a la cantidad de registro que tiene esa coleccion
        {
            return null;
+           
        }
        else{
-           return $this->course->lessons[$this->index+1];  
+           return $this->course->lessons[$this->index+1];
+          
        }
+       
    }
 
    public function getAdvanceProperty()
@@ -112,8 +125,18 @@ class CourseStatus extends Component
            }
        }
 
-       $advance=($i*100)/($this->course->lessons->count());
+       $this->avance=$advance=($i*100)/($this->course->lessons->count());
+
+       $this->course->students()->updateExistingPivot(auth()->user()->id,['completado'=>$advance]);
        return round($advance,2);
+   }
+
+   public function getStateProperty()
+   {
+        $this->state=$var = DB::table('course_user')
+        ->whereIn('course_id', [$this->course->id])
+        ->get();
+        return $var;
    }
 
 
@@ -121,5 +144,33 @@ class CourseStatus extends Component
     {
         return response()->download(storage_path('app/public/'.$this->current->resource->url));
     }
+
+    public function downloadcourse()
+    {
+        return response()->download(storage_path('app/public/'.$this->course->resource->url));
+    }
+
+    public function workfinal(Lesson $lesson)
+    {
+        if($this->avance==100)
+        {
+            $this->dispatchBrowserEvent('alert',['type'=>'success','message'=>'Puede enviar la tarea']);
+        }else{
+            $this->dispatchBrowserEvent('alert',['type'=>'error','message'=>'Aun no ha terminado el curso']);
+        }   
+    }
+
+    public function refrescarcomponent()
+    {
+        if($this->index==$this->course->lessons->count()-1)//si index es igual a la cantidad de registro que tiene esa coleccion
+       {
+           return null;
+       }
+       else{
+           return $this->course->lessons[$this->index+1];  
+       }
+    }
+
+    
 
 }

@@ -102,7 +102,12 @@ class Course extends Model
     {
         return $this->morphOne('App\Models\Image','imageable');
     }
-    
+
+    //relacion uno a uno polimorfica
+    public function resource()
+    {
+        return $this->morphOne('App\Models\Resource','resourceable');
+    }
 
     //relacion entre curso y lesson atraves de section
     public function lessons()

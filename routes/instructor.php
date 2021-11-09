@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Instructor\CourseController;
+use App\Http\Livewire\Instructor\AprobarResource;
+use App\Http\Livewire\Instructor\CourseResource;
 use App\Http\Livewire\Instructor\CoursesCurriculum;
 use App\Http\Livewire\Instructor\CourseStudents;
 use Illuminate\Support\Facades\Route;
@@ -14,5 +16,12 @@ Route::get('courses/{course}/students',CourseStudents::class)->middleware('can:A
 
 Route::post('courses/{course}/status',[CourseController::class,'status'])->name('courses.status');
 
+
+Route::get('courses/{course}/resour',CourseResource::class)->name('courses.complete')->middleware('can:Actualizar Cursos');
+
 Route::get('courses/{course}/observation',[CourseController::class,'observation'])->name('courses.observation');
+Route::post('course/{course}',[AprobarResource::class,'aprobar'])->name('course.aproved');
+
+//aprobar curso completado
+
 

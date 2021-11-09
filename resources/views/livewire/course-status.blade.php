@@ -1,23 +1,43 @@
+
+
+
 <div class="mt-8">
     <div class="container grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div class="lg:col-span-2">
 
            
-
-            {{-- Inicio --}}
-            <video width="100%" height="300px" disablepictureinpicture controls controlsList="nodownload">
-                <source src="https://filedn.com/lUsjRcKpAniL3VtPyGNja0h/HC%20%20LEARNING_1080p.mp4" type="video/mp4">
-            </video>
             {{-- fin --}}
 
-            <div class="embed-responsive">
-                {!!$current->iframe!!}
-            </div>
+            {{-- <iframe class="iframe" id="myframe" src="https://player.vimeo.com/video/499560327" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> --}}
+                @if ($current->platform_id==1)
+                    
+                    <div class="embed-responsive">
+                        {!!$current->iframe!!}
+                    </div>
+                        
+                @else
+                    <div class="">
+                        <video  id="videoplay" wire:click="" width="100%" height="300px" disablepictureinpicture controls controlsList="nodownload" >
+                            {!!$current->iframe!!}
+                        </video>    
+                    </div>
+                @endif
+                    
+                
+          
+               {{--  <div class="embed-responsive">
+                    {!!$current->iframe!!}
+                </div> --}}
+            
+
+
+            
             <h1 class="text-3xl text-gray-600 font-bold mt-4">{{ $current->name }}</h1>
             
             @if ($current->description)
                 <div class="text-gray-600">
                     {{ $current->description->name }}
+                    {{ $current->id }}
                 </div>
             @endif
 
@@ -37,6 +57,7 @@
                         <p class="text-sm ml-2">Descargar Recursos</p>
                     </div>
                  @endif
+                 
             </div>
             
 
@@ -45,11 +66,14 @@
                     @if ($this->previous)
                         <a wire:click="changeLesson({{ $this->previous }})" class="cursor-pointer">Tema anterior</a>
                     @endif
-                    @if ($this->next)
-                         <a wire:click="changeLesson({{ $this->next }})" class="ml-auto cursor-pointer">Tema siguiente</a>
+                   
+                    @if ($current->completed)
+                        @if ($this->next)
+                            <a wire:click="changeLesson({{ $this->next }})" class="ml-auto cursor-pointer">Tema siguiente</a>
+                        @endif
                     @endif
-                    
                 </div>
+               
             </div>
             
         {{--  
@@ -91,29 +115,146 @@
                                         <div>
                                             @if ($lesson->completed)
                                                 @if ($current->id==$lesson->id)
-                                                    <span class="inline-block w-4 h-4 border-2 border-yellow-300 rounded-full mr-2 mt-1"></span>
+                                                    <span class="inline-block w-4 h-4 border-2 border-bluelogo rounded-full mr-2 mt-1"></span>
                                                     @else
-                                                    <span class="inline-block w-4 h-4 bg-yellow-300 rounded-full mr-2 mt-1"></span>
+                                                    <span class="inline-block w-4 h-4 bg-bluelogo rounded-full mr-2 mt-1"></span>
                                                 @endif
                                                    
                                             @else
                                                 @if ($current->id==$lesson->id)
-                                                    <span class="inline-block w-4 h-4 border-2 border-gray-500 rounded-full mr-2 mt-1"></span>
+                                                    <span class="inline-block w-4 h-4 border-2 border-blue-300 rounded-full mr-2 mt-1"></span>
                                                 @else
-                                                    <span class="inline-block w-4 h-4 bg-gray-500 rounded-full mr-2 mt-1"></span>
+                                                    <span class="inline-block w-4 h-4 bg-blue-300 rounded-full mr-2 mt-1"></span>
                                                 @endif
                                                     
                                             @endif
                                         </div>
+                                        
                                         <a class="cursor-pointer" wire:clicK="changeLesson({{ $lesson }})">{{ $lesson->name }}</a>
+                                        
                                     </li>
                                 @endforeach
                             </ul>
                         </li>
                     @endforeach
                 </ul>
+
+                @foreach ($this->state as $stato)
+                @switch($stato->state)
+                    @case("Pending")
+                        @if ($this->advance==100)
+                        <form id="terminado" action="{{route('coursestatus.complete',$course)}}" method="POST">
+                            @csrf   
+                            <input type="hidden" value="{{ $this->advance }}" name="valorc" id="valorc">
+                            <button type="submit" class="btn btn-danger"> Solicitar trabajo</button>
+                        </form>
+                    
+                    @endif
+                    @break
+                    @case("Wait")
+                        <div class="card text-gray-500 mr-3 leading-4 text-center">
+                            <div class="card-body">
+                                Este curso se encuentra en espera del trabajo final
+                            </div>
+                        </div>
+                        
+                        @break
+                    @case("Active")
+                        <div class="card text-green-600">
+                            <div class="card-body">
+                                @if ($course->resource)
+                                <div class="flex items-center text-gray-600 cursor-pointer" wire:click="downloadcourse">
+                                        <i class="fas fa-download text-lg "></i>
+                                        <p class="text-sm ml-2">Descargar Recursos del curso</p>
+                                    </div>
+                                @else
+                                    <p>Este curso no tiene ningun recurso</p>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        @break
+                
+                    @default
+                        
+                @endswitch
+        @endforeach
+
+                {{-- @if ($this->advance==100)
+                        <form id="terminado" action="{{route('coursestatus.complete',$course)}}" method="POST">
+                            @csrf   
+                            <input type="hidden" value="{{ $this->advance }}" name="valorc" id="valorc">
+                            <button type="submit" class="btn btn-danger"> Solicitar trabajo</button>
+                        </form>
+                        
+
+                @else
+                    <div class="card text-gray-500 mr-3 leading-4">
+                        <div class="card-body">
+                            Este curso aun no se ha completado
+                        </div>
+                    </div>
+                @endif --}}
+                
             </div>
+            
         </div>
+        
     </div>
-    
+
 </div>
+
+<script>
+
+        
+
+
+        /* var aud = document.getElementById("videoplay");
+        document.querySelector('video').addEventListener('ended',function(){
+        window.livewire.emit('completed');
+        @if ($this->next)
+        window.livewire.emit("changeLesson", @json($this->next));
+        alert(@json($this->next->id))
+        
+        aud.load();
+        @endif
+                    
+            }, 
+            false
+            ); */
+    
+           
+
+        /* var aud = document.getElementById("videoplay");
+        aud.onended = function() {
+            window.livewire.emit('completed');
+            $('#videoplay').load();
+           //Livewire.emit("changeLesson", @json($this->next));
+           //Livewire.emit('changeLesson',@json($current));
+           @if($this->next)
+           {
+            window.livewire.emit("changeLesson", @json($this->next));
+           }    
+           @endif
+        }; */
+      
+/* 
+   @if ($this->next)
+   document.getElementById('videoplay').addEventListener('ended', function(e) {
+        
+        window.livewire.emit('completed');
+        
+        window.livewire.emit("changeLesson", @json($this->next));
+        $('#videoplay').load();
+        
+    
+    //alert(next);
+
+    });
+    
+   @endif
+
+ */
+   
+    
+</script>

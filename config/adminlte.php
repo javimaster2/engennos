@@ -271,6 +271,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Cursos terminados', 
+            'route'  => 'admin.terminate.index',
+            'icon' => 'fas fa-book',
+        ],
+        [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',

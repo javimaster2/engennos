@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TerminateController;
 use App\Http\Livewire\Admin\CreateRole;
 use App\Http\Livewire\Admin\EditRole;
 use App\Http\Livewire\Admin\RoleComponent;
@@ -28,10 +29,14 @@ Route::resource('users', UserController::class)->only(['index','edit','update'])
 
 
 //pendientes de aprobacion
-Route::get('courses',[CourseController::class,'index'])->name('courses.index');
-Route::get('courses/{course}',[CourseController::class,'show'])->name('courses.show');
+Route::get('courses',[CourseController::class,'index'])->name('courses.index')->middleware('can:Ver Dashboard');
+Route::get('courses/{course}',[CourseController:: class,'show'])->name('courses.show')->middleware('can:Actualizar Cursos');
 
-//aprobar curso
+//cursos terminados
+Route::get('CoursesTerminate',[TerminateController::class,'index'])->name('terminate.index');
+//Route::post('CoursesTerminate',[TerminateController::class,'recibe'])->name('terminate.recibe');
+
+//aprobar curso 
 Route::post('courses/{course}/approved', [CourseController::class,'approved'])->name('courses.approved');
 
 //observar cursos
@@ -39,5 +44,5 @@ Route::get('courses/{course}/observation', [CourseController::class,'observation
 Route::post('courses/{course}/reject', [CourseController::class,'reject'])->name('courses.reject');
 
 
-Route::resource('categories', CategoryController::class)->names('categories');
-Route::resource('prices', PriceController::class)->names('prices');
+Route::resource('categories', CategoryController::class)->names('categories')->middleware('can:Actualizar Categoria');
+Route::resource('prices', PriceController::class)->names('prices')->middleware('can:Actualizar Precios');

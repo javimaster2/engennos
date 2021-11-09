@@ -47,5 +47,11 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'name'=>'Editar Usuarios'
         ]);
+        Permission::create([
+            'name'=>'Actualizar Categoria'
+        ]);
+        Permission::create([
+            'name'=>'Actualizar Precios'
+        ]);
     }
 }
