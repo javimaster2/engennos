@@ -42,7 +42,7 @@
             @endif
 
             <div class="flex justify-between mt-4">
-                <div wire:click="completed" class="flex items-center ">
+                <div {{-- wire:click="completed" --}} class="flex items-center ">
                     @if ($current->completed)
                         <i class="fas fa-toggle-on text-2xl text-blue-600 cursor-pointer"></i>
                     @else
@@ -212,6 +212,7 @@
         /* var aud = document.getElementById("videoplay");
         document.querySelector('video').addEventListener('ended',function(){
         window.livewire.emit('completed');
+
         @if ($this->next)
         window.livewire.emit("changeLesson", @json($this->next));
         alert(@json($this->next->id))
@@ -221,11 +222,11 @@
                     
             }, 
             false
-            ); */
+            ); */ 
     
            
 
-        /* var aud = document.getElementById("videoplay");
+       /*  var aud = document.getElementById("videoplay");
         aud.onended = function() {
             window.livewire.emit('completed');
             $('#videoplay').load();
@@ -238,14 +239,14 @@
            @endif
         }; */
       
-/* 
+
    @if ($this->next)
    document.getElementById('videoplay').addEventListener('ended', function(e) {
         
         window.livewire.emit('completed');
         
-        window.livewire.emit("changeLesson", @json($this->next));
-        $('#videoplay').load();
+       /*  window.livewire.emit("changeLesson", @json($this->next));
+        $('#videoplay').load(); */
         
     
     //alert(next);
@@ -254,7 +255,7 @@
     
    @endif
 
- */
+
    
     
 </script>

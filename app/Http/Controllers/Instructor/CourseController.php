@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Course;
+use App\Models\Oferta;
 use App\Models\Price;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -14,7 +16,7 @@ use Illuminate\Http\Request;
 class CourseController extends Controller
 {
     
-
+    
     public function __construct()
     {
         $this->middleware('can:Leer Cursos')->only('index');
@@ -40,8 +42,11 @@ class CourseController extends Controller
     public function create()
     {   $categories=Category::pluck('name','id');
         $prices=Price::pluck('name','id');
+        $ofertas=Oferta::pluck('name','id');
+        
 
-        return view('instructor.courses.create',compact('categories','prices'));
+        
+        return view('instructor.courses.create',compact('categories','prices','ofertas'));
     }
 
     /**
@@ -69,20 +74,35 @@ class CourseController extends Controller
                  'description'=>'required',
                  'category_id'=>'required',
                  'price_id'=>'required',
+                 'oferta_id'=>'required',
                  'file'=>'image'
         ];
+
+        $notification = array(
+            'message' => 'El curso se publico con exito',
+            'alert-type' => 'success'
+        );
+
         $this->validate($request,$rules,$messages);
 
-        $course=Course::create($request->all());
+
+        
+        $cupon=Coupon::all();
+        
+            $course=Course::create($request->all());
        
-        if($request->file('file'))
-        {
-            $url=Storage::put('courses',$request->file('file'));
-            $course->image()->create([
-                'url'=>$url
-            ]);
-        }
-        return redirect()->route('instructor.courses.index',$course);
+            if($request->file('file'))
+            {
+                $url=Storage::put('courses',$request->file('file'));
+                $course->image()->create([
+                    'url'=>$url
+                ]);
+            }
+            
+            return redirect()->route('instructor.courses.index',$course)->with($notification);
+        
+        
+        
         
     }
 
@@ -109,7 +129,8 @@ class CourseController extends Controller
 
         $categories=Category::pluck('name','id');
         $prices=Price::pluck('name','id');
-        return view('instructor.courses.edit',compact('course','categories','prices'));
+        $ofertas=Oferta::pluck('name','id');
+        return view('instructor.courses.edit',compact('course','categories','prices','ofertas'));
     }
 
     /**
@@ -137,27 +158,44 @@ class CourseController extends Controller
                  'description'=>'required',
                  'category_id'=>'required',
                  'price_id'=>'required',
+                 'oferta_id'=>'required',
                  'file'=>'image'
         ];
+
+        $notification = array(
+            'message' => 'No se puede aplicar una oferta porque hay cupon activo para este curso',
+            'alert-type' => 'error'
+        );
+
         $this->validate($request,$rules,$messages);
 
-        $course->update($request->all());
-        if($request->file('file'))
+        $cupon=Coupon::all();
+        if($cupon->count()==0)
         {
-            $url=Storage::put('courses',$request->file('file'));
-            if($course->image)
+
+            $course->update($request->all());
+            if($request->file('file'))
             {
-                Storage::delete($course->image->url);
-                $course->image->update([
-                    'url'=>$url
-                ]);
-            }else{
-                $course->image()->create([
-                    'url'=>$url
-                ]);
+                $url=Storage::put('courses',$request->file('file'));
+                if($course->image)
+                {
+                    Storage::delete($course->image->url);
+                    $course->image->update([
+                        'url'=>$url
+                    ]);
+                }else{
+                    $course->image()->create([
+                        'url'=>$url
+                    ]);
+                }
             }
+            
+            return redirect()->route('instructor.courses.edit',$course);
+        }else{
+            
+            return redirect()->route('instructor.courses.edit',$course)->with($notification);
         }
-        return redirect()->route('instructor.courses.edit',$course);
+       
     }
 
     /**
@@ -194,4 +232,7 @@ class CourseController extends Controller
     {
         return view('instructor.courses.observation',compact('course'));
     }
+
+    
+
 }

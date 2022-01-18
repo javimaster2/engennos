@@ -26,7 +26,7 @@
                             <td>{{$price->name}}</td>
                             <td width="10px">
                                 {{-- <a href="{{route('admin.categories.edit',$category)}}" class="btn btn-success">Editar</a> --}}
-                                <button class="btn btn-success" wire:click="editar({{$price->id}})">Editar</button>
+                                <button class="btn btn-success" wire:click="editar({{$price->id}})"><i class="far fa-edit"></i></button>
                             </td>
                             <td width="10px">
                                 {{-- <form action="{{route('admin.categories.destroy',$category)}}" method="POST">

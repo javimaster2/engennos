@@ -16,4 +16,6 @@ class Price extends Model
     {
         return $this->hasMany('App\Models\Course');
     }
+
+    
 }

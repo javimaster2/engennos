@@ -20,13 +20,27 @@
             <p class="text-sm text-gray-500 ml-auto"><i class="fas fa-users"></i>({{ $course->students_count }})</p>
 
         </div>
-
+   
         @if ($course->price->value==0)
             <p class="my-2 text-green-800 font-bold">Gratis</p>
         @else
-            <p class="my-2 text-gray-500 font-bold">U$ {{ $course->price->value }}</p>
+            
+             @if ($course->oferta)
+                @if ($course->oferta->value!=0)
+                    <p class="my-2 text-gray-500 font-bold ">Precio: <span class="line-through">US$ {{ $course->price->value }}</span> </p>
+                    <p class="my-2 text-gray-500 font-bold"> Oferta:<span class=""> US$ {{ $course->oferta->value }}</span></p>
+                @else
+                    <p class="my-2 text-gray-500 font-bold">U$ {{ $course->price->value }}</p>
+                @endif
+                
+            @else
+                <p class="my-2 text-gray-500 font-bold">U$ {{ $course->price->value }}</p>
+            @endif
         @endif
+
+       
         
+     
         
         <a href="{{ route('courses.show',$course) }}" class="btn-block  btn btn-primary">
             Mas informacion

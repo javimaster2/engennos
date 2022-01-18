@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -95,6 +95,17 @@ class User extends Authenticatable
     public function lessons()
     {
         return $this->belongsToMany('App\Models\Lesson');
+    }
+
+
+    public function socialProfiles()
+    {
+        return $this->hasMany('App\Models\SocialProfile');
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany('App\Models\Course')->withPivot('user_id');
     }
     
 

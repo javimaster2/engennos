@@ -26,16 +26,20 @@
         <strong class="text-red-600 text-xs">{{$message}}</strong>
     @enderror
 </div>
-<div class="grid grid-cols-2 gap-1">
+<div class="grid grid-cols-3 gap-1">
     <div class="">
         {!! Form::label('category_id', 'Categoria') !!}
         {!! Form::select('category_id', $categories, null, ['class'=> 'focus:ring-2 focus:ring-gray-200 focus:border-transparent border border-gray-300 rounded w-full mt-1']) !!}
         
     </div>
     <div class=" ">
-        {!! Form::label('price_id', 'Precios') !!}
+        {!! Form::label('price_id', 'Precio Normal') !!}
         {!! Form::select('price_id', $prices, null, ['class'=> ' focus:ring-2 focus:ring-gray-200 focus:border-transparent border border-gray-300 rounded w-full mt-1']) !!}
         
+    </div>
+    <div class=" ">
+        {!! Form::label('oferta_id', 'Oferta') !!}
+        {!! Form::select('oferta_id', $ofertas, null, ['class'=> ' focus:ring-2 focus:ring-gray-200 focus:border-transparent border border-gray-300 rounded w-full mt-1']) !!}
     </div>
 </div>
 <h1 class="text-2xl font-bold mt-8 mb-2">Imagen del curso</h1>

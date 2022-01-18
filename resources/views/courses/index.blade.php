@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section class=" bg-cover relative"  style="background-image:url({{ asset('img/home/PORTADAH.png') }})">
+    {{-- <section class=" bg-cover relative -my-3 mb-auto"  style="background-image:url({{ asset('img/home/PORTADAH.png') }})">
         <div class="capa-gradient absolute w-full h-full"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-96 py-28 relative">
             <div class="w-full md:w-3/4 lg:1/2  ">
@@ -11,8 +11,19 @@
                @livewire('search')
             </div>
         </div>
-    </section>
+    </section> --}}
 
     @livewire('courses-index')
+    
+
+    
+    <script>
+        function inputSearch() {
+            return {
+                iconReset: false,
+                search: '',
+            }
+        }
+    </script>
 
 </x-app-layout>

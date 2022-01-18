@@ -78,10 +78,6 @@ class CourseController extends Controller
         return redirect()->route('admin.courses.index')->with($notification);
     }
 
-    public function terminate()
-    {
-        
-    }
-
+    
 
 }

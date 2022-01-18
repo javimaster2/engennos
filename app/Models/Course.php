@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Node\Expr\FuncCall;
 
+
 class Course extends Model
 {
     use HasFactory;
@@ -73,6 +74,10 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\Section');
     }
+    public function coupons()
+    {
+        return $this->hasMany('App\Models\Coupon');
+    }
 
     //relacion uno a muchos inversa 
     public function teacher() //recuperar el usuario que a dictado el curso
@@ -90,11 +95,21 @@ class Course extends Model
         return $this->belongsTo('App\Models\Price');
     }
 
+    public function oferta()
+    {
+        return $this->belongsTo('App\Models\Oferta');
+    }
+
 
     //relacion muchos a muchos metodo para recuperar todos los estudiantes que tenga este curso
     public function students()
     {
         return $this->belongsToMany('App\Models\User');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User')->withPivot('user_id');
     }
 
     //relacion uno a uno polimorfica

@@ -68,6 +68,9 @@ class CoursesLesson extends Component
         {
             $this->rules['lesson.url']=['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/'];
         }
+        else{
+            $this->rules['lesson.url']=['required', 'regex:/https?:\/\/(www\.)?onedrive\.live\.com\/download[?+=&%a-zA-Z0-9]+/'];
+        }
         $this->validate();
         $this->lesson->save();
         $this->lesson=new Lesson();

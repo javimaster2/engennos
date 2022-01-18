@@ -26,11 +26,15 @@ class CreateCoursesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('price_id')->nullable();
+            $table->unsignedBigInteger('oferta_id')->nullable();
+            //$table->unsignedBigInteger('coupon_id')->nullable();
 
             //agregar restriccion de llave foranea
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');//si se elimina una categoria relacionada a un curso no se elimina el curso por eso set null
             $table->foreign('price_id')->references('id')->on('prices')->onDelete('set null');
+            //$table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('cascade');
+            $table->foreign('oferta_id')->references('id')->on('ofertas')->onDelete('set null');
 
 
             $table->timestamps();

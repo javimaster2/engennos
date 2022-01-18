@@ -14,21 +14,22 @@ class PriceSeeder extends Seeder
      */
     public function run()
     {
+        
         Price::create([
-            'name'=>'19.99 US$',
-            'value'=>19.99
-        ]);
-        Price::create([
-            'name'=>'29.99 US$',
-            'value'=>29.99
+            'name'=>'34.99 US$',
+            'value'=>34.99
         ]);
         Price::create([
             'name'=>'39.99 US$',
             'value'=>39.99
         ]);
         Price::create([
-            'name'=>'49.99 US$',
-            'value'=>49.99
+            'name'=>'44.99 US$',
+            'value'=>44.99
+        ]);
+        Price::create([
+            'name'=>'Gratis',
+            'value'=>0
         ]);
     }
 }

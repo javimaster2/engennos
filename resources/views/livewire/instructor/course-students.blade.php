@@ -2,12 +2,14 @@
    
 
     <h1 class="text-2xl font-bold mb-4">ESTUDIANTES DEL CURSO</h1>
+  
 
     <x-table-responsive>
         <div class="px-6 py-4 ">
             <input wire:model="search"  class="w-full border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"  placeholder="Ingresar nombre de un curso...">
             
         </div>
+
         @if ($students->count())
             {{-- <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">

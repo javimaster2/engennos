@@ -4,6 +4,7 @@
             <div class="card-body">
                 <h1 class="text-2xl font-bold">Crear Nuevo Curso</h1>
                 <hr class="mt-2 mb-6">
+                
                 {!! Form::open(['route'=>'instructor.courses.store','files'=>true,'autocomplete'=>'off']) !!}
 
                     {!! Form::hidden('user_id', auth()->user()->id) !!}

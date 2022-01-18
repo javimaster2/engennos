@@ -58,6 +58,16 @@
                                     </x-jet-button>
                                 </div>
                             </form>
+                            
+                            
+            </div>
+            <div class="">
+                <p class="text-center ">-o-</p>
+                <div class="flex justify-center space-x-4 ">
+                    <a href="{{ url('login/facebook') }}" class="btn btn-primary ">Iniciar sesion con facebok</a>
+                    <a href="{{ url('login/google') }}" class="btn btn-danger">Iniciar sesion con google</a>
+                </div>
+                
             </div>
         </div>
        
