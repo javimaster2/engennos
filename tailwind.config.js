@@ -18,6 +18,9 @@ module.exports = {
                 'bluee':'#033142',
                 'bluelogo':'#02599cff',
             },
+            height:{
+                '640':'40rem',
+            },
         },
     },
 

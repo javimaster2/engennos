@@ -12,6 +12,8 @@ class LoginController extends Controller
 {
     //
 
+   
+
     public function redirectToProvider($driver)
     {
         $drivers=['facebook','google'];
@@ -78,4 +80,6 @@ class LoginController extends Controller
         
         // $user->token;
     }
+
+    
 }

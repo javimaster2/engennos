@@ -40,7 +40,15 @@
                     @endforelse
                 </tbody>
             </table>
+
+            {{ $roles->links() }}
         </div>
     </div>
 </div>
 @include('livewire.admin.modal')
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        window.livewire.on('roleadded')
+    });
+</script>

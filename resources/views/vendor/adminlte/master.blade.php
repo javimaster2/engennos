@@ -117,12 +117,14 @@
             @livewireScripts
         @else
             <livewire:scripts />
+            
         @endif
     @endif
 
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
     @livewireScripts
+    
     <script>
 
         window.addEventListener('alert', event => { 
@@ -160,6 +162,10 @@
                         }
                 })
             });
+
+
+
+            
     </script>
 
    

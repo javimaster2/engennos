@@ -28,22 +28,22 @@
     </div> --}}
     
 
-    <section class="relative md:mb-80 lg:mb-2">
+    <section class="relative md:mb-72 lg:mb-2 -top-3">
         
-        <div class=" w-full h-full absolute opacity-50 md:bg-gradient-to-r md:from-gray-500 md:to-black">
+        <div class=" w-full h-full absolute opacity-30   md:bg-gradient-to-r md:from-gray-400 md:to-gray-900">
 
         </div>
         <div class="">
-            <img class="object-cover object-center w-full h-image" src="{{ asset('img/home/PORTADAH.png') }}" alt="Oferta relampago">
+            <img class="object-cover object-center w-full lg:h-640" src="{{ asset('img/home/PORTADAH.png') }}" alt="Oferta relampago">
         </div>
         
         <div class="md:absolute sm:left-0 sm:top-0 w-full">
             
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-4  md:pt-8 lg:pt-12  mt-28 ">
-                <article class="bg-white overflow-hidden shadow-xl sm:rounded-lg block md:max-w-screen-lg md:h-72 py-4 md:py-2 lg:py-4 -mt-16">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-2  md:pt-8 lg:pt-12  mt-32 ">
+                <article class="bg-white backdrop-filter backdrop-blur-lg bg-opacity-70 overflow-hidden shadow-xl sm:rounded-lg block md:max-w-screen-lg md:h-72 py-4 md:py-2 lg:py-4 -mt-16">
 
 
-                <div class="px-6 py-4">
+                <div class="px-6 py-4 md:text-black">
 
                     <h1 class="font-bold text-3xl">Apertura de plataforma: 
                                                                         Cursos a tan solo 12.99 US$
@@ -52,8 +52,10 @@
                                     <p class="lg:text-lg pt-5">Lleva cualquiera de mis cursos a un precio especial. Oferta valida solo por 48 horas.</p>
                 
                 </div>
+                
 
                 </article>
+                
             </div>
         </div>
 
@@ -70,7 +72,7 @@
         
     </section > --}}
         
-    <section class="my-24 mb-3">
+    <section class="my-16 mb-3">
         <h1 class="text-center text-3xl text-gray-600">Ultimos Cursos</h1>
         <p class="text-center text-gray-500 text-sm mb-6">Trabajos de ingenieria civil</p>
 

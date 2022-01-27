@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'EduVirtual',
+    'title' => 'Engennos',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,11 +45,11 @@ return [
     |
     */
 
-    'logo' => '<b>Edu</b>Virtual',
-    'logo_img' => 'vendor/adminlte/dist/img/logo1.jpg',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>Engennos</b>',
+    'logo_img' => 'logo-engennos.png',
+    'logo_img_class' => 'brand-image img-circle elevation-3 bg-white',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
+    'logo_img_xl_class' => 'brand-image-xs ',
     'logo_img_alt' => 'AdminLTE',
 
     /*
@@ -240,19 +240,39 @@ return [
             'icon'        => 'fas fa-fw fa-tachometer-alt',
             'can'         =>'Ver Dashboard'
         ],
-        [
+        /* [
             'text'        => 'Lista de roles',
             'route'         => 'admin.roles.index',
             'icon'        => 'fas fa-fw fa-users-cog',
             'can'         => 'Listar Role',
             'active'    =>['admin/roles*']
-        ],
+        ], */
+        ['header' => 'OPCIONES DE USUARIOS'],
         [
             'text'        => 'Usuarios',
             'route'         => 'admin.users.index',
             'icon'        => 'fas fa-fw fa-users',
             'can'         =>'Leer Usuarios',
             'active'    =>['admin/users*']
+        ],
+        
+        
+
+        
+        [
+            'text' => 'Role', 
+            'route'  => 'admin.role.index',
+            'icon' => 'fas fa-fw fa-cogs',
+        ],
+        [
+            'text' => 'Permisos', 
+            'route'  => 'admin.permisos.index',
+            'icon' => 'fas fa-fw fa-cogs',
+        ],
+        [
+            'text' => 'Asignar', 
+            'route'  => 'admin.asignar.index',
+            'icon' => 'fas fa-fw fa-cogs',
         ],
         ['header' => 'OPCIONES DE CURSOS'],
         [
@@ -280,7 +300,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        [
+       /*  [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -317,8 +337,8 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
+        ], */
+        /* ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
@@ -333,7 +353,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ], */
     ],
 
     /*

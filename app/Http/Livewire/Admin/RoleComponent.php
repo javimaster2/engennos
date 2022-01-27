@@ -7,9 +7,12 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 
 class RoleComponent extends Component
 {
+
+    use WithPagination;
     public $sort='id';
     public $direction='desc';
     protected $listeners=['render'=>'render'];
@@ -27,7 +30,7 @@ class RoleComponent extends Component
     {
         $permissions=Permission::all();
 
-        $roles=Role::orderBy($this->sort )->get();
+        $roles=Role::orderBy($this->sort )->paginate();
         return view('livewire.admin.role-component',compact('roles','permissions'));
     }
 
@@ -71,7 +74,7 @@ class RoleComponent extends Component
             'name'=>$this->name
         ]);
 
-        $role->permissions()->attach($this->permissionsid);
+        $role->permissions()->sync($this->permissionsid);
 
         $this->reset(['openmodal','name','permissionsid']);
 
@@ -105,7 +108,7 @@ class RoleComponent extends Component
        
        //$role->permissions()->sync($this->permissionsedit);
         
-
+        
         $role->permissions()->sync($this->permissionsedit);
 
         //$this->reset(['openmodal','name','permissionsid','permissionsedit','accion']);
@@ -124,7 +127,15 @@ class RoleComponent extends Component
 
     public function destroy()
     {
-        Role::destroy($this->roleid);
-        $this->modalConfirmDeleteVisible=false;
+        $permisionCount=Role::find($this->roleid)->permissions->count();
+        if($permisionCount>0)
+        {
+            $this->emit('success','No se puede eliminar el role porque tiene permisos');
+        }else{
+            Role::destroy($this->roleid);
+            $this->modalConfirmDeleteVisible=false;
+        }
+
+        
     }
 }

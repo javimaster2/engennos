@@ -15,9 +15,14 @@ class CoursesIndex extends Component
     public $search='';
     public $category_id;
     public $page = 1;
+    public $replycourses=[];
+    public $loaddata=false;
 
-    protected $queryString = ['search'=>['except'=>''],'page' => ['except' => 1],];
+   
 
+    protected $queryString = ['search'=>['except'=>''],'page' => ['except' => 1]];
+
+   
     public function render()
     {
         
@@ -30,6 +35,10 @@ class CoursesIndex extends Component
         return view('livewire.courses-index',compact('courses','categories'));
     }
 
+    public function loadCourse()
+    {
+       $this->loaddata=true;
+    }
 
     public function updatingSearch()
     {

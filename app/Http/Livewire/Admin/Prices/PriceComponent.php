@@ -21,7 +21,7 @@ class PriceComponent extends Component
     public function render()
     {
         $prices=Price::all();
-        return view('livewire.admin.prices.price-component',compact('prices'));
+        return view('livewire.admin.prices.price-component',compact('prices'))/* ->extends('layouts.theme.app')->section('content') */;
     }
 
     public function limpiarcampos()

@@ -5,4 +5,4 @@
 </svg>
 --}}
 
-<img class="h-20 w-28 mt-5 object-cover"  src="{{ asset('LOGO ACC INGENIERIA.png') }}">
+<img class="h-20 w-28 mt-5 object-cover"  src="{{ asset('logo-engennos.png') }}">

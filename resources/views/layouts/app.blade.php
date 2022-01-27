@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
 
-        <title>{{ config('app.name', 'Eduvirtual') }}</title>
+        <title>{{ config('app.name', 'Engennos') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -14,7 +14,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
-        <link rel="shortcut icon" href="{{{ asset('LOGO ACC INGENIERIA.png') }}}">
+        <link rel="shortcut icon" href="{{ asset('logo-engennos.png') }}">
 
         {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.css" integrity="sha512-YM6sLXVMZqkCspZoZeIPGXrhD9wxlxEF7MzniuvegURqrTGV2xTfqq1v9FJnczH+5OGFl5V78RgHZGaK34ylVg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
         {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css"> --}}
@@ -23,11 +23,14 @@
 
         @livewireStyles
         
-        <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-
-        <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+       
         
-
+        <link
+        rel="stylesheet"
+        href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+      />
+      
+      <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
        {{--  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> --}}
     {{-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
@@ -55,7 +58,7 @@
 
         {{-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine-ie11.min.js" integrity="sha512-fTsYx0MbHyjq1vtD1hkb8pg/t06gIUsxiZc1THqiClKqd7bBKitKw/39mrL3bsOfIAi72vIa3BJngjLZXTYxBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine-ie11.min.js" integrity="sha512-fTsYx0MbHyjq1vtD1hkb8pg/t06gIUsxiZc1THqiClKqd7bBKitKw/39mrL3bsOfIAi72vIa3BJngjLZXTYxBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
         
         
 
@@ -110,61 +113,17 @@
                     }
 
 
-            /* .glider-prev, .glider-next, .glider-prevv, .glider-nextt{
-                position: absolute;
-                display: block;
-                width: 40px;
-                height: 40px;
-                border: none;
-                top: calc(50% - 40px);
-                cursor: pointer;
-                line-height: 40px;
-                opacity: 20%;
-                background: #fff;
-            } */
-
+           
+                    .swiper {
+                    width: 1000px;
+                    height: 300px;
+                    }
             
 
          
         </style>
 
-        {{-- <script>
-                $(document).ready(function () {
-                    $('.openModal').on('click', function(e){
-                        $('#interestModal').removeClass('invisible');
-                    });
-                    $('.closeModal').on('click', function(e){
-                        $('#interestModal').addClass('invisible');
-                    });
-                });
-
-                //modal register
-                /* window.addEventListener ('DOMContentLoaded',()=>{
-                    const showmodal=document.querySelector('#showmodal')
-                    const btnInit=document.querySelector('#btn_init')
-                    const closemodal=document.querySelector('#close-modal')
-
-                    const togglemodal=()=>{
-                        showmodal.classList.toggle('hidden')
-                        showmodal.classList.toggle('flex')
-                    }
-
-                    btnInit.addEventListener('click',togglemodal)
-                    closemodal.addEventListener('click',togglemodal)
-
-                    window.addEventListener('click',function(e)
-                    {
-                        console.log(e.target);
-                        if(e.target==showmodal)
-                        {
-                            showmodal.classList.toggle('hidden')
-                            showmodal.classList.toggle('flex')
-                        }
-                    })
-                    
-                }) */
-               
-    </script> --}}
+       
     </head>
     <body class="font-sans antialiased ">
         <x-jet-banner />
@@ -195,81 +154,15 @@
         @endisset
         
         
-        {{-- <div class="pt-12 ">
-            <footer id="footer" class="relative z-10 bg-white">
-                <div tabindex="0" aria-label="footer" class="focus:outline-none border-t border-gray-200 dark:border-gray-700 py-8 ">
-                    <div class="mx-auto container grid grid-cols-1">
-                        <div class="lg:flex ">
-                            <div class="w-full lg:w-1/2  lg:mb-0 lg:flex  ">
-                                <div class="w-full lg:w-1/2 px-6  text-center lg:text-left text-lg lg:text-sm">
-                                    <ul>
-                                        <li><a class="focus:outline-none focus:underline leading-none hover:text-red-500 lg:text-gray-800 text-sm" href="javascript:void(0)">Quienes Somos</a></li>
-                                        <li class="mt-6"><a class="focus:outline-none focus:underline leading-none hover:text-red-500 text-gray-800 text-sm" href="javascript:void(0)">Contactanos</a></li>
-                                    </ul>
-                                </div>
-                                <div class="w-full lg:w-1/2 px-6  text-center lg:text-left text-lg lg:text-sm lg:mt-0 mt-5">
-                                    <ul>
-                                        <li><a class="focus:outline-none focus:underline  leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50 text-sm" href="javascript:void(0)">Ayuda Y Asistencia</a></li>
-                                        <li class="mt-6"><a class="focus:outline-none focus:underline  leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50 text-sm" href="javascript:void(0)">Blog</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="w-full lg:w-1/2 lg:flex ">
-                                <div class="w-full lg:w-1/2 px-6 text-center lg:text-left text-lg lg:text-sm lg:mt-0 mt-5    ">
-                                    <ul>
-                                        <li><a href="javascript:void(0)" class="focus:underline focus:outline-none  leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50 text-sm">Politica de Privacidad</a></li>
-                                        <li class="mt-6"><a class="focus:underline focus:outline-none  leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50 text-sm" href="javascript:void(0)">Terminos y Condiciones</a></li>
-                                    </ul>
-                                </div>
-                                <div class="w-full lg:w-1/2 px-6 lg:mt-0 mt-5">
-                                    <div class="flex  mb-4 justify-center ">
-                                        
-                                            <div >
-                                                    <button aria-label="Facebook" class="text-gray-500 focus:outline-none ml-2 text-4xl cursor-pointer transition duration-500 ease-in-out transform lg:hover:-translate-y-1 lg:hover:scale-150"><i class="fab fa-instagram lg:hover:text-pink-500"></i></button>
-                                            </div> 
-                                        
-                                            <div class="">
-                                                <button aria-label="Facebook" class="text-gray-500 focus:outline-none ml-4 text-4xl cursor-pointer transition duration-500 ease-in-out transform lg:hover:-translate-y-1 lg:hover:scale-150"><i class="fab fa-twitter lg:hover:text-blue-400"></i></button>
-                                            </div>
-                                        
-                                            <div class="">
-                                                <button aria-label="Facebook" class="text-gray-500 focus:outline-none ml-4 text-4xl cursor-pointer transition duration-500 ease-in-out transform lg:hover:-translate-y-1 lg:hover:scale-150"><i class="fab fa-facebook lg:hover:text-blue-600"></i></button>
-                                            </div>
-                                            <div class="">
-                                                <button aria-label="Facebook" class="text-gray-500 focus:outline-none ml-4 text-4xl cursor-pointer transition duration-500 ease-in-out transform lg:hover:-translate-y-1 lg:hover:scale-150 "><i class="fab fa-youtube lg:hover:text-red-500"></i></button> 
-                                            </div>
-                                    </div>
-                                    <div class="relative w-36">
-                                        
-                                        
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="py-4 flex flex-col justify-center items-center  ">
-                    <a class="focus:outline-none" tabindex="0" role="link" aria-label="home link" href="{{route('home')}}">
-
-                        <img class="h-20 w-20" src="{{asset('LOGO ACC INGENIERIA.png')}}">
-                        
-                    </a>
-                    <p tabindex="0" class="focus:outline-none mt-6 text-xs lg:text-sm leading-none text-gray-900 dark:text-gray-50">©  2022  Todos los derechos reservados | EduVirtual | Términos y Condiciones | Política de Privacidad.</p>
-                </div>
-            </footer>
-        </div> --}}
+        
 
         <footer class="px-4 divide-y bg-coolGray-100 text-coolGray-800">
             <div class="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
                 <div class="lg:w-1/3">
-                    <a href="#" class="flex justify-center space-x-3 lg:justify-start">
-                        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-violet-600">
-                            <img class="h-20 w-20" src="{{asset('LOGO ACC INGENIERIA.png')}}">
+                    <a href="#" class="flex justify-center space-x-3 lg:justify-start b">
+                        <div class="flex items-center justify-center w-28 h-28 rounded-full bg-violet-600 ">
+                            <img class="h-28 w-28" src="{{asset('logo-engennos.png')}}">
                         </div>
-                        <span class="self-center text-2xl font-semibold">IngeVirtual</span>
                     </a>
                 </div>
                 <div class="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
@@ -280,7 +173,7 @@
                                 <a href="#">Quienes Somo</a>
                             </li>
                             <li>
-                                <a href="#">Contactanos</a>
+                                <a href="{{ route('contact') }}">Contactanos</a>
                             </li>
                             
                         </ul>
@@ -289,10 +182,10 @@
                         <h3 class="tracking-wide uppercase text-coolGray-900">Compañia</h3>
                         <ul class="space-y-1">
                             <li>
-                                <a href="#">Politicas y privacidad</a>
+                                <a href="{{ route('policy.show') }}">Politicas y privacidad</a>
                             </li>
                             <li>
-                                <a href="#">Terminos y condiciones</a>
+                                <a href="{{ route('terms.show') }}">Terminos y condiciones</a>
                             </li>
                         </ul>
                     </div>
