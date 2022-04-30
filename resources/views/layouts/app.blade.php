@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -14,22 +15,15 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
-        <link rel="shortcut icon" href="{{ asset('logo-engennos.png') }}">
+        <link rel="shortcut icon" href="{{ asset('LOGO ENGENNOS-min.png') }}">
 
-        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.css" integrity="sha512-YM6sLXVMZqkCspZoZeIPGXrhD9wxlxEF7MzniuvegURqrTGV2xTfqq1v9FJnczH+5OGFl5V78RgHZGaK34ylVg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
-        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css"> --}}
-        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.css" integrity="sha512-YM6sLXVMZqkCspZoZeIPGXrhD9wxlxEF7MzniuvegURqrTGV2xTfqq1v9FJnczH+5OGFl5V78RgHZGaK34ylVg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.5.6/swiper-bundle.min.css" integrity="sha512-8GrXJjYUgBA5dHliU+yZYZS+ic/okSTz0lZFW2PerQbO7lwmVFL5WBaAJhpvZd8Pc/Qh//AxwMik5ZTd8mmAUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
+        
         @livewireStyles
+   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.5.6/swiper-bundle.min.css" integrity="sha512-8GrXJjYUgBA5dHliU+yZYZS+ic/okSTz0lZFW2PerQbO7lwmVFL5WBaAJhpvZd8Pc/Qh//AxwMik5ZTd8mmAUg==" crossorigin="anonymous" referrerpolicy="no-referrer">
         
-       
-        
- 
-       {{--  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"> --}}
-    {{-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script> --}}
+    
+	 {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script> --}}
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -38,29 +32,21 @@
         <x-livewire-alert::flash />
         
         
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
         
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="https://www.paypal.com/sdk/js?client-id=AbVOc7mLtIJBVgLN0skWGWg3ETHXutbROmlwBpGI7KfvY64-e2hbwIJW20lRV1zhIxzJSxdRgRDchUsS"></script>
 
         {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
-
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.js" integrity="sha512-tHimK/KZS+o34ZpPNOvb/bTHZb6ocWFXCtdGqAlWYUcz+BGHbNbHMKvEHUyFxgJhQcEO87yg5YqaJvyQgAEEtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
-        {{-- <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script> --}}
+        
        
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.js" integrity="sha512-tHimK/KZS+o34ZpPNOvb/bTHZb6ocWFXCtdGqAlWYUcz+BGHbNbHMKvEHUyFxgJhQcEO87yg5YqaJvyQgAEEtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.5.6/swiper-bundle.min.js" integrity="sha512-n6GpoPKzdir52uRa3Z+M+BxBFNGwMMVTISZM9LMg9lMXyRVrtCcQavkP81NOI06NyVUskN9GLzZIQtPuF3GWLg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-        {{-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> --}}
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine-ie11.min.js" integrity="sha512-fTsYx0MbHyjq1vtD1hkb8pg/t06gIUsxiZc1THqiClKqd7bBKitKw/39mrL3bsOfIAi72vIa3BJngjLZXTYxBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+       {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine-ie11.min.js" integrity="sha512-fTsYx0MbHyjq1vtD1hkb8pg/t06gIUsxiZc1THqiClKqd7bBKitKw/39mrL3bsOfIAi72vIa3BJngjLZXTYxBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
         
-        
-
+       <script src="https://player.vimeo.com/api/player.js"></script>
 
         
         <style>
-            .portada{
+            /* .portada{
                 animation:movimiento 30s infinite linear alternate;
             }
             @keyframes movimiento{
@@ -77,7 +63,7 @@
             .capa-gradient2{
                 background: -webkit-linear-gradient(left,black,#063761);
             opacity:0.7 ;
-                }
+                } */
 
 
                 [x-cloak] { 
@@ -89,7 +75,7 @@
                         animation: spinner 1.5s linear infinite;
                     }
 
-                    @-webkit-keyframes spinner {
+                   /*  @-webkit-keyframes spinner {
                         0% {
                             -webkit-transform: rotate(0deg);
                         }
@@ -106,15 +92,8 @@
                             transform: rotate(360deg);
                         }
                     }
-
-
-           
-                    .swiper {
-                    width: 1000px;
-                    height: 300px;
-                    }
-            
-
+ */
+                    
          
         </style>
 
@@ -129,7 +108,7 @@
             
 
             <!-- Page Content -->
-            <main class="py-24">
+            <main class="py-24 bg-gray-100">
                 {{ $slot }}
             </main>
 
@@ -151,8 +130,8 @@
         
         
 
-        <footer class="px-4 divide-y bg-coolGray-100 text-coolGray-800">
-            <div class="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+        <footer class="px-4 divide-y bg-coolGray-100 text-coolGray-800 ">
+            <div class="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0 ">
                 <div class="lg:w-1/3">
                     <a href="#" class="flex justify-center space-x-3 lg:justify-start b">
                         <div class="flex items-center justify-center w-28 h-28 rounded-full bg-violet-600 ">
@@ -254,11 +233,19 @@
                     sidebar.classList.toggle('-translate-x-full');
                 });
 
+               
+            
+               
 
+               
 
         </script>
+       {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
        
             @stack('script')
+            
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.5.6/swiper-bundle.min.js" integrity="sha512-n6GpoPKzdir52uRa3Z+M+BxBFNGwMMVTISZM9LMg9lMXyRVrtCcQavkP81NOI06NyVUskN9GLzZIQtPuF3GWLg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             
     </body>
     </html>

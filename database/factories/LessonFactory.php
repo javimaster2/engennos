@@ -23,9 +23,9 @@ class LessonFactory extends Factory
     {
         return [
             'name'=>$this->faker->sentence(),
-            'url'=>'https://onedrive.live.com/download?cid=A22253AD553B9A9A&resid=A22253AD553B9A9A%213233&authkey=APvsAwjrlPwioUc',
-            'iframe'=>'<source width="560" height="315" src="https://onedrive.live.com/download?cid=A22253AD553B9A9A&resid=A22253AD553B9A9A%213233&authkey=APvsAwjrlPwioUc" type="video/mp4></iframe>',
-            'platform_id'=>2,
+            'url'=>'https://vimeo.com/679177498',
+            'iframe'=>'<source id="videoplay" width="560" height="315" src="https://vimeo.com/679177498" type="video/mp4></iframe>',
+            'platform_id'=>1,
         ];
     }
 }

@@ -19,6 +19,8 @@ class CreateCoursesTable extends Migration
             $table->string('title');
             $table->string('subtitle');
             $table->text('description');
+            $table->string('intro');
+            $table->string('iframe');
             $table->enum('status',[Course::BORRADOR,Course::REVISION,Course::PUBLICADO])->default(Course::BORRADOR);
             $table->string('slug');//para generar nuestras url amigables
 

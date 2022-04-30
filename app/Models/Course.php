@@ -39,6 +39,13 @@ class Course extends Model
             return $query->where('category_id',$category_id);
         }
     }
+    public function scopeUser($query,$user_id)
+    {
+        if($user_id)//si hay almacenado algo y si no no entrara
+        {
+            return $query->where('user_id',$user_id);
+        }
+    }
 
     public function getRouteKeyName()
     {
@@ -97,7 +104,7 @@ class Course extends Model
 
     public function oferta()
     {
-        return $this->belongsTo('App\Models\Oferta');
+        return $this->belongsTo('App\Models\Oferta','oferta_id');
     }
 
 

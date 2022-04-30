@@ -26,7 +26,7 @@
         <strong class="text-red-600 text-xs">{{$message}}</strong>
     @enderror
 </div>
-<div class="grid grid-cols-3 gap-1">
+<div class="grid grid-cols-2 gap-1">
     <div class="">
         {!! Form::label('category_id', 'Categoria') !!}
         {!! Form::select('category_id', $categories, null, ['class'=> 'focus:ring-2 focus:ring-gray-200 focus:border-transparent border border-gray-300 rounded w-full mt-1']) !!}
@@ -37,12 +37,22 @@
         {!! Form::select('price_id', $prices, null, ['class'=> ' focus:ring-2 focus:ring-gray-200 focus:border-transparent border border-gray-300 rounded w-full mt-1']) !!}
         
     </div>
-    <div class=" ">
+    {{-- <div class=" ">
         {!! Form::label('oferta_id', 'Oferta') !!}
         {!! Form::select('oferta_id', $ofertas, null, ['class'=> ' focus:ring-2 focus:ring-gray-200 focus:border-transparent border border-gray-300 rounded w-full mt-1']) !!}
-    </div>
+    </div> --}}
 </div>
+<h1 class="text-2xl font-bold mt-8 mb-2">Video Introductorio</h1>
+<div class="mb-4">
+    {!! Form::label('intro', 'Video Introductorio') !!}
+    {!! Form::url('intro', null, ['class'=>'focus:ring-2 focus:ring-gray-200 focus:border-transparent w-full border border-gray-300 rounded'.($errors->has('intro')?' border-red-600':'')]) !!}
+    @error('intro')
+        <strong class="text-red-600 text-xs">{{$message}}</strong>
+    @enderror
+</div>
+
 <h1 class="text-2xl font-bold mt-8 mb-2">Imagen del curso</h1>
+
 <div class="grid grid-cols-2 gap-1">
     <figure>
         @isset($course->image)

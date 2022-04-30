@@ -25,11 +25,23 @@ class Cupones extends Component
         'codigo'=>'required',
         'estado'=>'required',
         'tipo'=>'required',
-        'cantidad'=>'required',
+        'cantidad'=>'required|integer|min:1|max:5',
         'value'=>'required|numeric',
         'fechaven'=>'required',
         
     ];
+    protected $messages = [
+        'codigo.required' => 'Ingrese un codigo valido',
+        'estado.required' => 'Seleccione un estado',
+        'tipo.required' => 'Seleccione un porcentaje',
+        'cantidad.required' => 'Ingrese una cantidad valida',
+        'cantidad.required|min:1' => 'Ingrese un valor mayor 0',
+        'cantidad.required|max:5' => 'Ingrese un valor mayor 0',
+        'value.required' => 'Seleccione un porcentaje',
+        'fechaven.required' => 'Seleccione una fecha',
+
+    ];
+
 
     public function mount(Course $course)
     {
@@ -77,11 +89,12 @@ class Cupones extends Component
 
     public function guardar()
     {
-        $this->validate();
+        
+        $this->validate($this->rules,$this->messages);
 
         if($this->course->oferta->value==0)
         {
-            if($this->value==10 || $this->value==20 || $this->value==30 || $this->value==40)
+            if($this->value==10 || $this->value==20 )
                 {
                     
 

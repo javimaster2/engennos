@@ -17,6 +17,7 @@ class CreateOfertasTable extends Migration
             $table->id();
             $table->string('name');
             $table->float('value');
+            $table->enum('state',['Disabled','Active'])->default('Disabled');
             $table->timestamps();
         });
     }

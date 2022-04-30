@@ -275,6 +275,7 @@ return [
             'icon' => 'fas fa-fw fa-cogs',
         ],
         ['header' => 'OPCIONES DE CURSOS'],
+        
         [
             'text' => 'Categorias', 
             'route'  => 'admin.categories.index',
@@ -291,8 +292,24 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Reporte de pagos', 
+            'route'  => 'admin.reporte.index',
+            'icon' => 'fas fa-book',
+        ],
+        [
             'text' => 'Cursos terminados', 
             'route'  => 'admin.terminate.index',
+            'icon' => 'fas fa-book',
+        ],
+        [
+            'text' => 'Oferta Cursos', 
+            'route'  => 'admin.oferta.index',
+            'icon' => 'fas fa-book',
+        ],
+        
+        [
+            'text' => 'Cupones descuento', 
+            'route'  => 'admin.cupon.index',
             'icon' => 'fas fa-book',
         ],
         [

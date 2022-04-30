@@ -65,6 +65,7 @@ class CourseController extends Controller
             'slug.required'=>'Por favor ingrese el slug',
             'subtitle.required'=>'Por favor ingrese el subtitulo',
             'description.required'=>'Por favor ingrese la descripcion',
+            'intro.required'=>'Por favor ingrese la url de presentacion',
             'file.required'=>'El archivo no es de tipo imagen',
         ];
          $rules=[
@@ -72,9 +73,10 @@ class CourseController extends Controller
                  'slug'=>'required|unique:courses',
                  'subtitle'=>'required',
                  'description'=>'required',
+                 'intro'=>'required',
                  'category_id'=>'required',
                  'price_id'=>'required',
-                 'oferta_id'=>'required',
+                 /* 'oferta_id'=>['required'], */
                  'file'=>'image'
         ];
 
@@ -83,12 +85,14 @@ class CourseController extends Controller
             'alert-type' => 'success'
         );
 
+        
+
         $this->validate($request,$rules,$messages);
 
 
         
-        $cupon=Coupon::all();
-        
+      
+            $request['oferta_id']=1;
             $course=Course::create($request->all());
        
             if($request->file('file'))
@@ -149,6 +153,7 @@ class CourseController extends Controller
             'slug.required'=>'Por favor ingrese el slug',
             'subtitle.required'=>'Por favor ingrese el subtitulo',
             'description.required'=>'Por favor ingrese la descripcion',
+            'intro.required'=>'Por favor ingrese la url de presentacion',
             'file.required'=>'El archivo no es de tipo imagen',
         ];
          $rules=[
@@ -156,9 +161,10 @@ class CourseController extends Controller
                  'slug'=>'required|unique:courses,slug,'.$course->id,
                  'subtitle'=>'required',
                  'description'=>'required',
+                 'intro'=>['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/'],
                  'category_id'=>'required',
                  'price_id'=>'required',
-                 'oferta_id'=>'required',
+                 /* 'oferta_id'=>'required', */
                  'file'=>'image'
         ];
 
@@ -170,9 +176,20 @@ class CourseController extends Controller
         $this->validate($request,$rules,$messages);
 
         $cupon=Coupon::all();
-        if($cupon->count()==0)
+        $oferta=Oferta::where('id',$request->oferta_id)->get();
+        $name="";
+        foreach($oferta as $oferta)
         {
+            $name=$oferta->name;
+        }
+        
+        if($cupon->count()==0 || $name=="No hay oferta")
+        {
+            $url = $course->intro;
+        
 
+        $patron = '/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/';
+            //$request['oferta_id']=1;
             $course->update($request->all());
             if($request->file('file'))
             {

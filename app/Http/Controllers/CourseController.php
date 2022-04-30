@@ -27,7 +27,7 @@ class CourseController extends Controller
                             ->where('id','!=',$course->id)
                             ->where('status',3)
                             ->latest('id')
-                            ->take(5)
+                            ->take(2)
                             ->get();
         return view('courses.show',compact('course','similares'));
     }

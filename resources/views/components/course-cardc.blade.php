@@ -1,15 +1,18 @@
 @props(['course'])
 
-<article class="bg-white overflow-hidden sm:rounded-lg flex flex-col h-full">
+<article class="bg-white overflow-hidden rounded-lg flex flex-col h-full">
     <figure class="aspect-w-16 aspect-h-9">
-        <img class=" w-full object-cover object-center" src="{{ asset( 'storage/' . $course->image->url) }}" alt="">
+        <a href="{{ route('courses.show',$course) }}">
+            <img class=" h-60 w-full object-cover object-center" src="{{ asset( 'storage/' . $course->image->url) }}" alt="">
+        </a>
+        
     </figure>
     
 
 
     <div class="px-6 pt-4 pb-5 flex-1 flex flex-col">
         <h1 class="text-lg font-semibold">
-            <a href="">
+            <a href="{{ route('courses.show',$course) }}">
                 {{ Str::limit($course->title,30) }}
             </a>
         </h1>

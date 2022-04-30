@@ -3,9 +3,12 @@
 use App\Http\Controllers\Admin\AsignarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\admin\CuponController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\admin\OfertasController;
 use App\Http\Controllers\Admin\PermisosController;
 use App\Http\Controllers\Admin\PriceController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\Roles as AdminRoles;
 use App\Http\Controllers\Admin\RolesController;
@@ -19,6 +22,8 @@ use App\Http\Livewire\Admin\CategoryComponent;
 use App\Http\Livewire\Admin\Prices\PriceComponent;
 use App\Http\Livewire\AdminUsers;
 use App\Http\Livewire\Roles;
+use Illuminate\Http\Request;
+
 
 Route::get('',[HomeController::class,'index'])->middleware('can:Ver Dashboard')->name('home');
 
@@ -53,12 +58,39 @@ Route::post('courses/{course}/reject', [CourseController::class,'reject'])->name
 Route::resource('categories', CategoryController::class)->names('categories')->middleware('can:Actualizar Categoria');
 Route::resource('prices', PriceController::class)->names('prices')->middleware('can:Actualizar Precios');
 
+
 Route::resource('role', RolesController::class)->names('role')->middleware('can:Editar Usuarios');
 Route::resource('permisos', PermisosController::class)->names('permisos')->middleware('can:Editar Usuarios');
 Route::resource('asignar', AsignarController::class)->names('asignar')->middleware('can:Editar Usuarios');
 
 
 /* Route::get('prices',PriceComponent::class)->name('prices'); */
+
+Route::get('reporte', [ReportController::class,'index'])->name('reporte.index')->middleware('can:Actualizar Precios');
+Route::get('reporte/{user}', [ReportController::class,'show'])->name('reporte.show')->middleware('can:Actualizar Precios');
+Route::get('reporte/{course}/detalles', [ReportController::class,'detalles'])->name('reporte.detalles')->middleware('can:Actualizar Precios');
+/* Route::get('{d1?}/{d2}/{d3}', [ReportController::class,'download'])->name('reporte.download')->middleware('can:Actualizar Precios'); */
+Route::resource('ofertas', OfertasController::class)->names('oferta')->middleware('can:Actualizar Precios');
+Route::get('cupon', [CuponController::class,'index'])->name('cupon.index')->middleware('can:Actualizar Precios');
+Route::get('cupon/{course}', [CuponController::class,'show'])->name('cupon.show')->middleware('can:Actualizar Precios');
+
+
+
+Route::post('download/', function (Request $request) {
+    //
+    $datos=$request->data;
+    $title=$request->title;
+    $suma=$request->suma;
+    /* return dd($title); */
+    /* $pdf = PDF::loadView('livewire.admin.reporte.download',compact('title','suma'));
+    return $pdf->stream('pruebapdf.pdf'); */
+})->name('reporte.download');
+
+Route::post('exportExcel/',[ReportController::class,'exportExcel'])->name('exportexcel');
+
+
+
+
 
 
 

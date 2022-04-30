@@ -6,6 +6,7 @@
         <div class="lg:col-span-2">
 
            
+
             {{-- fin --}}
 
             {{-- <iframe class="iframe" id="myframe" src="https://player.vimeo.com/video/499560327" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> --}}
@@ -15,23 +16,30 @@
                         {!!$current->iframe!!}
                     </div>
                         
+                   
                 @else
-                    <div class="">
-                        <video  id="videoplay" wire:click="" width="100%" height="300px" disablepictureinpicture controls controlsList="nodownload" >
-                            {!!$current->iframe!!}
+                    {{-- <div class="">
+                        <video  id="videoplay" width="100%" height="300px" disablepictureinpicture controls controlsList="nodownload"  >
+                            {!!$current->iframe!!}"
                         </video>    
-                    </div>
+                    </div> --}}
+
+                    <video id="videoplay" src="{!!$current->url!!}" width="100%" height="300px" disablepictureinpicture controls controlsList="nodownload" >
+                    </video>
                 @endif
+
+                
+                <div id="meta"></div>
+                
                     
                 
-          
-               {{--  <div class="embed-responsive">
-                    {!!$current->iframe!!}
-                </div> --}}
-            
+               
+                {{-- <video controls width="360" height="240">
+                    <source src="{!!$current->url!!}" type='video/mp4'/>
+                 </video>
+               --}}
 
-
-            
+                 
             <h1 class="text-3xl text-gray-600 font-bold mt-4">{{ $current->name }}</h1>
             
             @if ($current->description)
@@ -69,7 +77,7 @@
                    
                     @if ($current->completed)
                         @if ($this->next)
-                            <a wire:click="changeLesson({{ $this->next }})" class="ml-auto cursor-pointer">Tema siguiente</a>
+                            <a wire:click="changeLesson({{ $this->next }})"  class="ml-auto cursor-pointer">Tema siguiente</a>
                         @endif
                     @endif
                 </div>
@@ -111,9 +119,11 @@
                             <a class="font-bold text-base mb-3 block">{{ $section->name }}</a>
                             <ul>
                                 @foreach ($section->lessons as $lesson)
+
                                     <li class="flex">
                                         <div>
                                             @if ($lesson->completed)
+                                            
                                                 @if ($current->id==$lesson->id)
                                                     <span class="inline-block w-4 h-4 border-2 border-bluelogo rounded-full mr-2 mt-1"></span>
                                                     @else
@@ -130,7 +140,7 @@
                                             @endif
                                         </div>
                                         
-                                        <a class="cursor-pointer" wire:clicK="changeLesson({{ $lesson }})">{{ $lesson->name }}</a>
+                                        <a class="cursor-pointer" wire:clicK="changeLesson({{ $lesson }})" >{{ $lesson->name }}</a>
                                         
                                     </li>
                                 @endforeach
@@ -240,20 +250,61 @@
         }; */
       
 
+        /* var myVideoPlayer = document.getElementById('videoplay'),
+           meta = document.getElementById('meta');
+
+        myVideoPlayer.addEventListener('loadedmetadata', function () {
+            var duration = myVideoPlayer.duration;
+            //meta.innerHTML = "Duration is " + duration.toFixed(0) + " seconds."
+            output = document.getElementById('meta');
+
+            // horas = Math.trunc(duration/3600);
+            //minutos = Math.trunc(duration/60);
+            //output.innerHTML = "<br>" + horas + " horas, " + minutos + " minutos y " + duration.toFixed(0) + " segundos";
+            const segundos = (Math.round(duration % 0x3C)).toString();
+            const horas    = (Math.floor(duration / 0xE10)).toString();
+            const minutos  = (Math.floor(duration / 0x3C ) % 0x3C).toString();
+                        
+            output.innerHTML = `<br>${horas} horas, ${minutos} minutos y ${segundos} segundos.`;
+
+        }); */
+
+       
+
+       
+        
+        
+        
+        
+
    @if ($this->next)
-   document.getElementById('videoplay').addEventListener('ended', function(e) {
+  /*  document.getElementById('videoplay').addEventListener('ended', function(e) {
         
-        window.livewire.emit('completed');
         
-       /*  window.livewire.emit("changeLesson", @json($this->next));
-        $('#videoplay').load(); */
+    window.livewire.emit('completed');
+       //  window.livewire.emit("changeLesson", @json($this->next));
+       
+        $('#videoplay').load();
         
     
-    //alert(next);
+   
 
-    });
+    }); */
+
+    var iframe = document.querySelector('iframe');
+
+        var player = new Vimeo.Player(iframe);
+
+        player.on('ended', function() {
+            window.livewire.emit('completed');
+            player.load();
+
+        });
+        
     
    @endif
+
+
 
 
    

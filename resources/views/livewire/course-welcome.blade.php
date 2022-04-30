@@ -213,21 +213,23 @@
         x-init="swiper = new Swiper($refs.container, {
             loop: true,
             slidesPerView: 1,
-            spaceBetween: 0,
+            spaceBetween: 10,
+            grabCursor:true,
         
             breakpoints: {
-              640: {
-                slidesPerView: 1,
-                spaceBetween: 0,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 0,
-              },
-              1024: {
-                slidesPerView: 4,
-                spaceBetween: 10,
-              },
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+                
             },
           })"
         class="relative  mx-auto flex flex-row" 
@@ -246,7 +248,7 @@
             <!-- Slides -->
             
             @foreach ($courses as $course)
-            <li class="swiper-slide bg-white rounded-lg shadow {{ $loop->last ? '':'sm:mr-4' }}" style="width: 368px;">
+            <li class="swiper-slide bg-white rounded-lg border {{ $loop->last ? '':'sm:mr-4' }}" >
                 <x-course-cardc :course="$course" /> 
             </li>
             @endforeach
@@ -267,6 +269,35 @@
       <p class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-500 mx-auto"></p>
       @endif
 </div> 
- 
+
+
+
+{{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-6" wire:init="loadPosts" >
+
+    @if ($readyToLoad)
+       
+        <div id="splide" class="splide">
+            <div class="splide__track">
+            <ul class="splide__list">
+                
+
+                @foreach ($courses as $course)
+                <li class="splide__slide ">
+                    <x-course-cardc :course="$course" /> 
+                </li>
+                    
+                    
+                    @endforeach
+            </ul>
+            </div>
+        </div>
+        @else
+        <p class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-500 mx-auto"></p>
+        @endif
+</div>
+ --}}
+
+
+
 
 

@@ -38,11 +38,10 @@
 
             
             <label for="tipo" class="block text-left" >
-                <x-jet-label for="tipo" value="Tipo" />
+                <x-jet-label for="tipo" value="Porcentaje" />
                 <select name="tipo" wire:model="tipo" id="tipo" class="form-select block w-full mt-1">
-                    <option hidden selected>Seleccionar estado</option>
+                    <option hidden selected>Seleccionar porcentaje</option>
                   <option value="porcentaje">Porcentaje</option>
-                  <option value="moneda">Moneda</option>
                 </select>
               </label>
               
@@ -54,7 +53,7 @@
             
             <div class="form-group">
                 <x-jet-label for="cantidad" value="Cantidad" />
-                <x-jet-input type="number"  class="w-full" wire:model.defer="cantidad" id="value" placeholder="Ingrese la cantidad de cupones"/>
+                <x-jet-input type="number"  class="w-full" wire:model.defer="cantidad" id="value" placeholder="Ingrese una cantidad entre 1-5 cupones"/>
             </div>
             @error('cantidad')
                 <span class="text-red-500 text-sm">{{$message}}</span>
@@ -70,8 +69,6 @@
                     <option hidden selected>Seleccionar el porcentaje descuento</option>
                   <option value="10">10 % Descuento</option>
                   <option value="20">20 % Descuento</option>
-                  <option value="30">30 % Descuento</option>
-                  <option value="40">40 % Descuento</option>
                 </select>
               </label>
             @error('value')

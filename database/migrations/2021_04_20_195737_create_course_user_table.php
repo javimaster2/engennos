@@ -19,6 +19,7 @@ class CreateCourseUserTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->double('completado')->nullable();
             $table->enum('state',['Pending','Wait','Active'])->default('Pending');
+            $table->float('value');
 
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade'); //se eliminara el registro en esta tabla intermedia si eliminamos un curso
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

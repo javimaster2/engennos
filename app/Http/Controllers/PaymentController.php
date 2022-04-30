@@ -11,6 +11,7 @@ class PaymentController extends Controller
 {
 
     public $cupon_id,$preciodescuento;
+    public $name;
 
     
     public function checkout(Course $course,Coupon $coupon)
@@ -171,7 +172,21 @@ class PaymentController extends Controller
 
         $payment->execute($execution, $apiContext);
 
-        $course->students()->attach(auth()->user()->id);
+        if($course->oferta_id==0)
+        {
+            $this->preciodescuento=$course->price->value;
+            $course->students()->attach(auth()->user()->id,['value'=>$course->price->value,'created_at'=>Carbon::now()]);
+        }
+        else
+            if($course->oferta_id==1)
+            {
+                $course->students()->attach(auth()->user()->id,['value'=>$course->price->value,'created_at'=>Carbon::now()]);
+            }
+            else{
+                $course->students()->attach(auth()->user()->id,['value'=>$course->oferta->value,'created_at'=>Carbon::now()]);
+            }
+
+        //$course->students()->attach(auth()->user()->id,[]);
 
         return redirect()->route('courses.status',$course);
         
@@ -199,7 +214,7 @@ class PaymentController extends Controller
 
         $payment->execute($execution, $apiContext);
 
-        $course->students()->attach(auth()->user()->id);
+        $course->students()->attach(auth()->user()->id,['value'=>round($course->price->value-($coupon->valor/100*$course->price->value),2),'created_at'=>Carbon::now()]);
         
         $couponuse=$coupon->uso;
         if($coupon->uso<=$coupon->cantidad)

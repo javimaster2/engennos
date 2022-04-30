@@ -50,10 +50,10 @@ class CoursesIndex extends Component
         $this->reset(['category_id']);
     }
 
-    public function resetInput()
-    {
-        $this->reset('search');
-    }
+        public function resetInput()
+        {
+            $this->reset('search');
+        }
 
   
     

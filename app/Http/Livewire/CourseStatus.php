@@ -46,7 +46,6 @@ class CourseStatus extends Component
     public function render()
     { 
         
-        
         return view('livewire.course-status');
     }
 
@@ -55,7 +54,6 @@ class CourseStatus extends Component
    public function changeLesson(Lesson $lesson)
    {
        $this->current=$lesson;
-
        
    }
 
@@ -73,7 +71,7 @@ class CourseStatus extends Component
        }
 
        //que current se rellene, recuperamos la leccion que cumpla con este parametro
-       //con esto estoy volviendo a recuperar el mismo registro solo que que esta vez al recuperarlo ya va a reconocer que esta leccion a sido marcado como culminada
+       //con esto estoy volviendo a recuperar el mismo   registro solo que que esta vez al recuperarlo ya va a reconocer que esta leccion a sido marcado como culminada
        $this->current=Lesson::find($this->current->id);
        $this->course=Course::find($this->course->id);
    }

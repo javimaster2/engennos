@@ -282,25 +282,27 @@
          
          <div x-data="{swiper: null}"
          x-init="swiper = new Swiper($refs.container, {
-             loop: true,
-             slidesPerView: 1,
-             spaceBetween: 0,
-         
-             breakpoints: {
-               640: {
-                 slidesPerView: 1,
-                 spaceBetween: 0,
-               },
-               768: {
-                 slidesPerView: 2,
-                 spaceBetween: 0,
-               },
-               1024: {
-                 slidesPerView: 4,
-                 spaceBetween: 10,
-               },
-             },
-           })"
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 0,
+            grabCursor:true,
+        
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+                
+            },
+          })"
          class="relative  mx-auto flex flex-row" 
        >
  
@@ -317,7 +319,7 @@
              <!-- Slides -->
              
              @foreach ($coursesscount as $course)
-             <li class="swiper-slide bg-white rounded-lg shadow {{ $loop->last ? '':'sm:mr-4' }}" style="width: 368px;">
+             <li class="swiper-slide bg-white rounded-lg border {{ $loop->last ? '':'sm:mr-4' }}" style="width: 368px;">
                 <x-course-cardc :course="$course" /> 
              </li>
              @endforeach

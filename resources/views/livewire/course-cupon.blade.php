@@ -4,34 +4,92 @@
 
 <div>
     
-    <div class="container grid grid-cols-1 lg:grid-cols-3 gap-12 pt-5">
+    <div class="container grid grid-cols-1 lg:grid-cols-3 gap-12  pt-5 ">
         
         
         <div class="order-2 lg:col-span-2 lg:order-1">
             
-            <section class="capa-gradient2  py-12 mb-12 " >
-                <div class="container grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <figure class="relative">
-                        
-                        <img class="h-60 w-full object-cover" src="{{ asset( 'storage/' . $course->image->url) }}" alt="">
-                    </figure>
-                    <div class="text-white">
-                        <h1 class="text-4xl">{{ $course->title }}</h1>  
-                        <h2 class="text-xl mb-3">{{ $course->subtitle }}</h2>
-                        <p class="mb-2"><i class="fas fa-"></i> Categoria: {{ $course->category->name }}</p>
-                        <p class="mb-2"><i class="fas fa-users"></i> Matriculados: {{ $course->students_count }}</p>
-                        <p><i class="far fa-star"></i> Calificacion: {{ $course->rating }}</p>
+            <div class="text-gray-700 mb-4">
+                <h2 class="md:text-4xl font-semibold text-3xl mb-2 ">{{ $course->title }}</h2> 
+                <p class="text-gray-700">{{ $course->subtitle }}</p>
+            </div>
+
+            
+        
+            <div class="embed-responsive">
+                {!!$course->iframe!!}
+            </div>
+                
+            
+
+           {{--  <div class="aspect-w-16 aspect-h-9">
+                <video id="videoplay"  width="100%" height="300px" disablepictureinpicture controls controlsList="nodownload" poster="https://yumagic.com/wp-content/uploads/2018/11/edicion-video-programas.jpg" >
+                    <source src="{{ $course->intro }}" type="video/mp4">    
+                </video>
+            </div> --}}
+                
+            <section class=" py-7 flex items-center justify-between " >
+                
+                <div class="flex items-center">
+                    <img class=" h-8 w-8 object-cover rounded-full shadow-lg" src="{{ $course->teacher->profile_photo_url}}" alt="{{ $course->teacher->name }}">
+                    <div class="ml-4">
+                        <h1 class="text-gray-500 font-bold text-sm">Docente. {{ $course->teacher->name }}</h1>
+                    </div>
+                </div>
+               
+
+                <div class="flex text-gray-700">
+                    <p><i class="fas fa-star text-yellow-300"></i> Calificacion: {{ $course->rating }}</p>
+                </div>
+                
+            </section>
+
+            
+            
+            <hr class="mb-4">
+            <section class="bg-white w-full ">
+                <div class=" mx-auto px-8">
+                    <div class="table  w-full">
+                        <div class="block sm:table-cell">
+                            <p class="uppercase text-grey text-sm sm:mb-6 text-gray-600">Categoria</p>
+                            <ul class="list-reset text-xs mb-6">
+                                <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                                    <p class=" text-gray-600 font-semibold">{{ $course->category->name }}</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="block sm:table-cell">
+                            <p class="uppercase text-grey text-sm sm:mb-6 text-gray-600">Personas Inscritas</p>
+                            <ul class="list-reset text-xs mb-6">
+                                <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                                    <p>{{ $course->students->count() }}</p>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="block sm:table-cell">
+                            <p class="uppercase text-grey text-sm sm:mb-6 text-gray-600">Última actualizacion</p>
+                            <ul class="list-reset text-xs mb-6">
+                                <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                                    <p>{{ $course->updated_at->diffForHumans() }}</p>
+                                </li>
+                               
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
 
             
-            <section class="card border border-gray-200 mb-12">
+            <hr class="mb-4 -mt-2">
+
+
+            <section class="border  mb-12">
                 <div class="card-body">
-                    <h1 class="font-bold text-2xl mb-2 ">Lo que aprenderas</h1>
+                    <h1 class="font-bold text-2xl mb-2 text-gray-600">¿Que aprenderé?</h1>
                     <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
                         @foreach ($course->goals as $goal)
-                            <li class="text-gray-700 text-base"><i class="fas fa-check text-yellow-600 mr-2"></i> {{ $goal->name }}</li>
+                            <li class="text-gray-600 text-base"><i class="fas fa-check text-yellow-600 mr-2"></i> {{ $goal->name }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -39,21 +97,28 @@
 
             
             <section class="mb-12">
-                <h1 class="font-bold text-gray-800 text-3xl mb-2">Temario</h1>
+                <h1 class="font-bold text-gray-600 text-2xl mb-2">Temario</h1>
                 @foreach ($course->sections as $section)
-                    <article class="mb-4 shadow" 
+                    <article class="mb-4 " 
                     @if ($loop->first)
                         x-data="{ open:true }"
                     @else
                         x-data="{ open:false }"
                     @endif>
-                        <header class="border border-gray-200 px-4 py-2 cursor-pointer bg-gray-200 " x-on:click="open=!open">
-                            <h1 class="font-bold text-lg text-gray-600">{{ $section->name }}<i class=" fas fa-angle-down text-lg ml-5"></i></h1>
+                        <header class="border rounded-lg border-gray-300 px-4 py-2 cursor-pointer flex items-center space-x-2" x-on:click="open=!open">
+                            <template x-if="!open" >
+                                <i class=" fas fa-plus text-lg ml-2"></i> 
+                            </template>
+                            <template x-if="open">
+                                <i class=" fas fa-minus text-lg ml-2"></i> 
+                            </template>
+                            <h1 class="font-bold text-lg text-gray-500">{{ $section->name }}</h1>
                         </header>
-                        <div class="bg-white py-2 px-4" x-show="open">
+                        <div class="bg-white py-2 px-4 rounded-lg" x-show.transition="open"
+                        >
                             <ul class="grid grid-cols-1 gap-2">
                                 @foreach ($section->lessons as $lesson)
-                                    <li class="text-gray-700 text-base "><i class="fas fa-check-circle mr-2 text-bluelogo"></i> {{ $lesson->name }}</li>
+                                    <li class="text-gray-700 text-base "><i class="fas fa-file-video mr-2 text-gray-400 "></i> {{ $lesson->name }}</li>
                                 @endforeach
                             </ul>
 
@@ -64,7 +129,7 @@
 
             
             <section class="mb-8">
-                <h1 class="font-bold text-3xl text-gray-800">Requisitos</h1>
+                <h1 class="font-bold text-2xl text-gray-600">Requisitos</h1>
                 <ul class="list-disc list-inside">
                     @foreach ($course->requirements as $requirement)
                         <li class="text-base text-gray-700">{{ $requirement->name }}</li>
@@ -74,25 +139,41 @@
 
             
             <section>
-                <h1 class="font-bold text-3xl text-gray-800">Descripcion</h1>
+                <h1 class="font-bold text-2xl text-gray-600">Descripcion</h1>
                 <div class="text-gray-700 text-base">
                     {!! $course->description !!}
                 </div>
             </section>
 
+            
+            <div id="recor"></div>
+
             @livewire('course-reviews', ['course' => $course])
         </div>
         
-        <div class="order-1 xl:order-2 xl:fixed xl:mr-28  xl:right-40 z-0">
-            <section class="card border mb-4 border-gray-200">
+        <div class="order-1 lg:order-2 ">
+            
+            <section class="card border mb-4 border-gray-200 sticky top-28">
+                
+                <figure class="relative">
+                    @if ($course->image)
+                <img class="h-60   lg:w-full object-cover w-screen" src="{{ asset( 'storage/' . $course->image->url) }}" alt="">
+                    @else
+                        <img class="h-60 w-full object-cover" src="https://images.pexels.com/photos/4218864/pexels-photo-4218864.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+                @endif
+                </figure>
                 <div class="card-body">
-                    <div class="flex items-center">
+                   {{--  <div class="flex items-center">
                         <img class=" h-12 w-12 object-cover rounded-full shadow-lg" src="{{ $course->teacher->profile_photo_url}}" alt="{{ $course->teacher->name }}">
                         <div class="ml-4">
                             <h1 class="text-gray-500 font-bold text-lg">Docente. {{ $course->teacher->name }}</h1>
                             <a class="text-blue-400 tex-sm font-bold">{{ '@'. Str::slug($course->teacher->name, '') }}</a>
                         </div>
-                    </div>
+                    </div> --}}
+                    
+                        
+                        
+                   
                     @can('enrolled', $course)
                     <a href="{{ route('courses.status',$course) }}" class="btn btn-primary btn-block mt-4">Continuar con el curso</a>
                     @else
@@ -105,9 +186,10 @@
                             @else
                                 
                                 @if ($course->oferta)
+                                    <p class="bg-red-500 text-white w-20 rounded-sm text-center">Oferta</p>
                                     @if ($course->oferta->value!=0)
-                                        <p class="text-2xl font-bold text-gray-500 mt-3 mb-2 ">Precio: <span class="line-through">US$ {{ $course->price->value }}</span> </p>
-                                        Precio de oferta: <p class="text-xl font-bold text-gray-500 mt-3 mb-2">US$ {{ $course->oferta->value }}</p>
+                                        <p class="text-xl font-bold text-gray-500 mt-3 mb-2 ">Precio: <span class="line-through">US$ {{ $course->price->value }}</span> </p>
+                                        <p class="text-xl font-bold text-gray-500 mt-3 mb-2">Oferta: US$ {{ $course->oferta->value }}</p>
                                     @else
                                         <p class="text-2xl font-bold text-gray-500 mt-3 mb-2">US$ {{ $course->price->value }}</p>
                                     @endif
@@ -125,6 +207,7 @@
                                 
                             @endif
 
+                            
                           
                             
                             
@@ -139,16 +222,20 @@
                             </script>
                         @endif --}}
                             
-
-
-                        
-
                             
                         
                     @endcan
+                    <div class="mt-4 text-gray-600">
+                        <p class="font-bold text-lg mb-1" >Detalles del curso</p>
+                        <ul class="space-y-1">
+                            <li><i class="fas fa-folder-open inline-block w-6"></i> Recursos descargables {{ $this->lessoncount }}</li>
+                            <li><i class="fas fa-users inline-block w-6"></i> Matriculados {{ $course->students->count() }}</li>
+                            <li><i class="fas fa-infinity inline-block w-6"></i> Acceso de por vida</li>
+                        </ul>
+                    </div>
+                   
 
-                    
-                        
+
                     
                     <div class="mt-4 mb-4 text-center" x-data="{open:false}" x-cloak>
                         <a x-on:click="open=!open" class="font-bold cursor-pointer ">Aplicar cupón</a>
@@ -163,6 +250,8 @@
                                     <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    
                     
 
 
@@ -210,7 +299,7 @@
                 </div>
 
             </section>
-            <aside class="hidden md:block">
+            {{-- <aside class="hidden md:block"> 
                 @foreach ($similares as $similar)
                     <article class="flex mb-6">
                         
@@ -226,7 +315,7 @@
                         </div>
                     </article>
                 @endforeach
-            </aside>
+            </aside> --}}
         </div>
 
     </div>
@@ -236,7 +325,7 @@
 
 <script>
     $(document).ready(function(){
-        $("#button-aplicar").click(function(){
+        /* $("#button-aplicar").click(function(){
 
             var codigo=$("#codecupon").val();
             var token="{{ csrf_token() }}";
@@ -278,18 +367,30 @@
             });
 
 
-        });
-        $("#codecupon").keyup(function()
+        }); */
+
+        
+
+      
+
+
+        /* $("#codecupon").keyup(function()
         {
             $("#error").hide();
             $("#premio").hide();
             $("#datosCupon").hide();
-        })
+        }) */
 
        
 
     });
 
-   
+    function recorrer()
+        {
+            metaa = document.getElementById('recor');
+            @foreach ($course->sections as $section)
+               metaa.innerHTML=$section;
+            @endforeach
+        }
     
 </script>

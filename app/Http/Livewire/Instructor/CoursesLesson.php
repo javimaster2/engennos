@@ -44,11 +44,11 @@ class CoursesLesson extends Component
             'url'=>['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/']
         ];
 
-        if($this->platform_id==2)
+        /* if($this->platform_id==2)
         {
             //$rules['url']=['required', 'regex:%^ (?:https?://)? (?:www\.)? (?: youtu\.be/ | youtube\.com (?: /embed/ | /v/ | /watch\?v= ) ) ([\w-]{10,12}) $%x'];
             $rules['url']=['required', 'regex:/https?:\/\/(www\.)?onedrive\.live\.com\/download[?+=&%a-zA-Z0-9]+/'];
-        }
+        } */
 
         $this->validate($rules);
 
@@ -64,13 +64,15 @@ class CoursesLesson extends Component
     }
     public function update()
     {
-        if($this->lesson->platform_id==1)
+
+        $this->rules['lesson.url']=['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/'];
+        /* if($this->lesson->platform_id==1)
         {
             $this->rules['lesson.url']=['required', 'regex:/\/\/(www\.)?vimeo.com\/(\d+)($|\/)/'];
         }
         else{
             $this->rules['lesson.url']=['required', 'regex:/https?:\/\/(www\.)?onedrive\.live\.com\/download[?+=&%a-zA-Z0-9]+/'];
-        }
+        } */
         $this->validate();
         $this->lesson->save();
         $this->lesson=new Lesson();

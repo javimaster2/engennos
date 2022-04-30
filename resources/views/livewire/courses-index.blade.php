@@ -142,14 +142,14 @@
                         @endif
                     </div>
                     <div class="col-span-1 lg:col-span-1 order-1 lg:order-2">
-                            <div class="sm:px-6 lg:px-2  bg-gray-200 rounded-md">
-                                <button wire:click="resetFilters" class=" bg-white shadow my-3 w-full h-14 rounded-md text-gray-700 mr-4 focus:outline-none"> <i class=" fas fa-home text-lg mr-2"></i> Todos los cursos</button>
+                            <div class="sm:px-6 lg:px-2   rounded-md">
+                                <button wire:click="resetFilters" class=" bg-indigo-100 shadow my-3 w-full h-14 rounded-md text-gray-700 mr-4 focus:outline-none"> <i class=" fas fa-home text-lg mr-2"></i> Todos los cursos</button>
                     
                                     <!-- component -->
                     
                                     <!-- Dropdown -->
                                     <div class="relative" x-data="{open:false}">
-                                        <button class="bg-white shadow my-3 w-full h-14 rounded-md text-gray-700 mr-4 focus:outline-none" x-on:click="open=true">
+                                        <button class="bg-indigo-100 shadow my-3 w-full h-14 rounded-md text-gray-700 mr-4 focus:outline-none" x-on:click="open=true">
                                             <i class=" fas fa-tags text-lg mr-2"></i>
                                             Categoria
                                             <i class=" fas fa-angle-down text-lg ml-2"></i>

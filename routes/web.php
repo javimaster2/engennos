@@ -69,9 +69,9 @@ Route::get('courses/', [CourseController::class,'mecourse'])->name('courses.meco
 
 
 //paginas adicionales
-Route::get('terminos', [HomeController::class,'terms'])->name('terms.show');
+//Route::get('terminos', [HomeController::class,'terms'])->name('termi.show');
 //Route::get('contactanos', [HomeController::class,'contact'])->name('contact');
-Route::get('politicas', [HomeController::class,'policy'])->name('policy.show');
+//Route::get('politicas', [HomeController::class,'policy'])->name('poli.show');
 
 
 //contact

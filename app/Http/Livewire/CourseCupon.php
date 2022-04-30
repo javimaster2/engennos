@@ -13,6 +13,7 @@ class CourseCupon extends Component
     use LivewireAlert;
 
     public $course,$similares,$idcupon=" ",$codecupon,$valorcupon,$idvalor,$coupon="",$estado,$fecha,$fechaactual,$uso,$cantidad;
+    public $pruebacount;
     
     public function mount($similar,Course $course)
     {
@@ -22,7 +23,9 @@ class CourseCupon extends Component
 
     public function render()
     { 
-        return view('livewire.course-cupon');
+        $students=$this->course->students()->get();
+        $coursess=Course::where('status',3)->get();
+        return view('livewire.course-cupon',compact('coursess'));
     }
 
     /* public function aler()
@@ -39,6 +42,23 @@ class CourseCupon extends Component
             'onDenied' => '',
            ]);
     } */
+
+    
+    public function getLessoncountProperty()
+    {
+        $suma=0;
+        foreach ($this->course->sections as $section)
+        {
+            foreach ($section->lessons as $lesson)
+            {
+                $suma += $lesson->resource()->count();
+            }
+            
+        }
+               return $suma; 
+                
+        
+    }
 
     public function aply()
     {
